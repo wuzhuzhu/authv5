@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { loginSchema } from "@/lib/schema";
+import { loginActon } from "@/lib/actions/auth";
 
 import {
 	Form,
@@ -30,12 +31,12 @@ const LoginForm = () => {
 	});
 
 	const onSubmit = (values: z.infer<typeof loginSchema>) => {
-		console.log("submit", values);
+		loginActon(values);
 	};
 
 	return (
 		<CardWrapper
-			headerLabel="Welcome back"
+			headerLabel="SiliconFlow"
 			backButtonLabel="Don't have an account?"
 			backButtonHref="/auth/register"
 			showSocial
@@ -63,7 +64,7 @@ const LoginForm = () => {
 								<FormItem>
 									<FormLabel>Password</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="******" />
+										<Input {...field} type="password" placeholder="******" />
 									</FormControl>
 									<FormMessage />
 								</FormItem>

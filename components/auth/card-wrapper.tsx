@@ -39,7 +39,11 @@ const CardWrapper = ({
 				</CardFooter>
 			)}
 			<CardFooter>
-				<BackButton label={backButtonLabel} href={backButtonHref} />
+				{/* <BackButton label={backButtonLabel} href={backButtonHref} /> */}
+				<p className="muted">
+					By signing up, I agree to Siliconflow Terms of Service and Privacy
+					Policy.
+				</p>
 			</CardFooter>
 		</Card>
 	);
