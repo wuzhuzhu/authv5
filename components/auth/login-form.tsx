@@ -20,8 +20,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import FormError from "@/components/shared/form-error";
 import FormSuccess from "../shared/form-success";
+import { use, useTransition } from "react";
+import LoadingButton from "../shared/loading-button";
 
 const LoginForm = () => {
+	const [isPending, startTransition] = useTransition();
 	const form = useForm<z.infer<typeof loginSchema>>({
 		resolver: zodResolver(loginSchema),
 		defaultValues: {
@@ -31,7 +34,9 @@ const LoginForm = () => {
 	});
 
 	const onSubmit = (values: z.infer<typeof loginSchema>) => {
-		loginActon(values);
+		startTransition(() => {
+			loginActon(values);
+		});
 	};
 
 	return (
@@ -51,7 +56,11 @@ const LoginForm = () => {
 								<FormItem>
 									<FormLabel>Email</FormLabel>
 									<FormControl>
-										<Input {...field} placeholder="example@test.com" />
+										<Input
+											{...field}
+											placeholder="example@test.com"
+											disabled={isPending}
+										/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -64,7 +73,12 @@ const LoginForm = () => {
 								<FormItem>
 									<FormLabel>Password</FormLabel>
 									<FormControl>
-										<Input {...field} type="password" placeholder="******" />
+										<Input
+											{...field}
+											type="password"
+											placeholder="******"
+											disabled={isPending}
+										/>
 									</FormControl>
 									<FormMessage />
 								</FormItem>
@@ -73,9 +87,9 @@ const LoginForm = () => {
 					</div>
 					<FormError message="" />
 					<FormSuccess message="" />
-					<Button type="submit" className="w-full">
-						Login
-					</Button>
+					<LoadingButton type="submit" className="w-full" isLoading={isPending}>
+						{isPending ? "Loading" : "Login"}
+					</LoadingButton>
 				</form>
 			</Form>
 		</CardWrapper>
