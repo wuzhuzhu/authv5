@@ -8,6 +8,15 @@ body,
   height: 100%;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-pacifico);
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -78,5 +87,11 @@ body,
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .gradient-bg {
+    @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500;
   }
 }
