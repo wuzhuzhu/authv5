@@ -51,6 +51,7 @@ const LoginForm = () => {
 		<CardWrapper
 			headerLabel="SiliconFlow"
 			backButtonLabel="Don't have an account?"
+			cardDescription="Create an Account"
 			backButtonHref="/auth/register"
 			showSocial
 		>

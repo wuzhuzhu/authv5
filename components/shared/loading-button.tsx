@@ -2,7 +2,8 @@ import React, { Children } from "react";
 import { Button } from "../ui/button";
 import { RxReload } from "react-icons/rx";
 
-interface LoadingButtonProps {
+interface LoadingButtonProps
+	extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	// className?: React.ComponentProps<"div">["className"];
 	isLoading: boolean;
 	children: React.ReactNode;
