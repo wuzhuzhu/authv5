@@ -7,22 +7,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import ErrorBoundary from "@/components/shared/error-boundary";
 import FormError from "@/components/shared/form-error";
-import FormSuccess from "@/components/shared/form-success";
 import LoadingButton from "@/components/shared/loading-button";
-import { Button } from "@/components/ui/button";
 import {
 	Form,
 	FormControl,
-	FormDescription,
 	FormField,
 	FormItem,
 	FormLabel,
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { use, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 
 const LoginForm = () => {
 	const [error, setError] = useState("");
