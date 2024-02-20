@@ -1,14 +1,11 @@
 "use server";
 
-import {
-	UserCreateInputSchema,
-	UserUncheckedCreateInputSchema,
-} from "@/prisma/generated/zod";
-import bcrypt from "bcrypt";
+import { UserCreateInputSchema } from "@/prisma/generated/zod";
+import bcrypt from "bcryptjs";
 import { z } from "zod";
 
 import db from "@/lib/db";
-import { sleep } from "../utils";
+import { sleep } from "@/lib/utils";
 
 export const loginActon = async (
 	values: z.infer<typeof UserCreateInputSchema>,
@@ -30,10 +27,13 @@ export const loginActon = async (
 		});
 
 		if (existingUser) {
-			// login in User
+			// 用户登录流程
 			console.log("用户存在", existingUser);
+			return {
+				success: true,
+				actionType: "login",
+			};
 		}
-
 		// 新用户注册流程
 		if (password) {
 			// 密码注册
@@ -45,16 +45,17 @@ export const loginActon = async (
 					password: hashedPassword,
 				},
 			});
+			return {
+				success: true,
+				actionType: "register",
+			};
 		}
-
+	} else {
+		// 验证失败
 		return {
-			success: true,
+			success: false,
+			message: "服务器验证输入失败",
+			errors: validated.error.errors,
 		};
 	}
-	// 验证失败
-	return {
-		success: false,
-		message: "服务器验证输入失败",
-		errors: validated.error.errors,
-	};
 };
