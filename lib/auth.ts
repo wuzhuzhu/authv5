@@ -14,6 +14,16 @@ export const {
 } = NextAuth({
 	callbacks: {
 		async jwt({ token, user, account, profile, isNewUser }) {
+			// if (!token.sub) return token;
+
+			// const existingUser = await db.user.findUnique({
+			// 	where: { id: token.sub },
+			// });
+
+			// if (!existingUser) return token;
+
+			console.log(token, user, account, profile, isNewUser);
+
 			console.log({ token, user, profile });
 			return token;
 		},
