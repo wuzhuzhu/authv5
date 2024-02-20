@@ -1,14 +1,9 @@
 "use server";
 
-import { log } from "console";
+import bcrypt from "bcrypt";
 import { z } from "zod";
 import { loginSchema } from "../schema";
 import { sleep } from "../utils";
-
-// for testing error
-const loginSchema1 = loginSchema.extend({
-	bad: z.string().min(10),
-});
 
 export const loginActon = async (values: z.infer<typeof loginSchema>) => {
 	if (process.env.NODE_ENV !== "production") await sleep(1000);
@@ -17,6 +12,7 @@ export const loginActon = async (values: z.infer<typeof loginSchema>) => {
 
 	if (validated.success) {
 		console.log("validated", validated.data);
+
 		return {
 			success: true,
 		};
