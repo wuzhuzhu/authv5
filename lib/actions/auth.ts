@@ -13,7 +13,7 @@ import { AuthError } from "next-auth";
 export const loginActon = async (
 	values: z.infer<typeof UserCreateInputSchema>,
 ) => {
-	if (process.env.NODE_ENV !== "production") await sleep(1000);
+	// if (process.env.NODE_ENV !== "production") await sleep(1000);
 	// const validated = loginSchema1.parse(values)
 	const validated = UserCreateInputSchema.safeParse(values);
 
@@ -56,10 +56,6 @@ export const loginActon = async (
 				}
 				throw error;
 			}
-			return {
-				success: true,
-				actionType: "login",
-			};
 		}
 		// 新用户注册流程
 		if (password) {
@@ -72,10 +68,12 @@ export const loginActon = async (
 					password: hashedPassword,
 				},
 			});
-			return {
-				success: true,
-				actionType: "register",
-			};
+			// TODO: email verification flow
+			await signIn("credentials", {
+				email,
+				password,
+				redirectTo: DEFAULT_LOGIN_REDIRECT,
+			});
 		}
 	} else {
 		// 验证失败

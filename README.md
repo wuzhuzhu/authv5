@@ -1,7 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## TODO
-[] i18n
+[] email verification flow
 [] send register confirmation email
 [] implement DTO layer: https://nextjs.org/blog/security-nextjs-server-components-actions
 

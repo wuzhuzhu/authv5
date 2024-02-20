@@ -36,7 +36,7 @@ const LoginForm = () => {
 			setError("");
 
 			loginActon(values).then((res) => {
-				if (!res?.success) {
+				if (res?.success === false) {
 					setError(res?.message || "Something went wrong");
 				}
 			});
