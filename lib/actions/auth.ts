@@ -4,8 +4,11 @@ import { UserCreateInputSchema } from "@/lib/schema";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
 
+import { signIn } from "@/lib/auth";
+import { DEFAULT_LOGIN_REDIRECT } from "@/lib/constants/route";
 import db from "@/lib/db";
 import { sleep } from "@/lib/utils";
+import { AuthError } from "next-auth";
 
 export const loginActon = async (
 	values: z.infer<typeof UserCreateInputSchema>,
@@ -28,7 +31,31 @@ export const loginActon = async (
 
 		if (existingUser) {
 			// 用户登录流程
-			console.log("用户存在", existingUser);
+			try {
+				await signIn("credentials", {
+					email,
+					password,
+					redirectTo: DEFAULT_LOGIN_REDIRECT,
+				});
+			} catch (error) {
+				if (error instanceof AuthError) {
+					switch (error.type) {
+						case "CredentialsSignin":
+							return {
+								success: false,
+								message: "Invalid Credentials",
+								// error,
+							};
+						default:
+							return {
+								success: false,
+								message: "Something went wrong",
+								// error,
+							};
+					}
+				}
+				throw error;
+			}
 			return {
 				success: true,
 				actionType: "login",
@@ -55,7 +82,7 @@ export const loginActon = async (
 		return {
 			success: false,
 			message: "服务器验证输入失败",
-			errors: validated.error.errors,
+			// error: validated.error.errors,
 		};
 	}
 };

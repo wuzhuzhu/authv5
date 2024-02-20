@@ -91,7 +91,7 @@ const LoginForm = () => {
 					</div>
 					{error && <FormError message={error} />}
 					<LoadingButton type="submit" className="w-full" isLoading={isPending}>
-						{isPending ? "Loading" : "Login"}
+						{isPending ? "Loading" : "Login / Register"}
 					</LoadingButton>
 				</form>
 			</Form>

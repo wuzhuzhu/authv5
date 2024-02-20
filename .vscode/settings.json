@@ -5,5 +5,6 @@
 		"quickfix.biome": "explicit"
 	},
 	"editor.defaultFormatter": "biomejs.biome",
-	"javascript.preferences.importModuleSpecifier": "project-relative"
+	"javascript.preferences.importModuleSpecifier": "project-relative",
+	"cSpell.words": ["Signin"]
 }

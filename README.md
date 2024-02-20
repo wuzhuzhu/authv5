@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## TODO
 [] i18n
+[] send register confirmation email
+[] implement DTO layer: https://nextjs.org/blog/security-nextjs-server-components-actions
 
 ## Getting Started
 
