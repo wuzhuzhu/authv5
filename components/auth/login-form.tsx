@@ -2,7 +2,10 @@
 
 import CardWrapper from "@/components/auth/card-wrapper";
 import { loginActon } from "@/lib/actions/auth";
-import { loginSchema } from "@/lib/schema";
+import {
+	UserCreateInputSchema,
+	UserUncheckedCreateInputSchema,
+} from "@/prisma/generated/zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -23,15 +26,16 @@ import { useState, useTransition } from "react";
 const LoginForm = () => {
 	const [error, setError] = useState("");
 	const [isPending, startTransition] = useTransition();
-	const form = useForm<z.infer<typeof loginSchema>>({
-		resolver: zodResolver(loginSchema),
+	console.log(UserCreateInputSchema);
+	const form = useForm<z.infer<typeof UserCreateInputSchema>>({
+		resolver: zodResolver(UserCreateInputSchema),
 		defaultValues: {
 			email: "",
 			password: "",
 		},
 	});
 
-	const onSubmit = (values: z.infer<typeof loginSchema>) => {
+	const onSubmit = (values: z.infer<typeof UserCreateInputSchema>) => {
 		startTransition(() => {
 			setError("");
 

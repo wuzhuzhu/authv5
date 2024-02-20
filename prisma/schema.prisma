@@ -20,9 +20,11 @@ datasource db {
 model User {
   id            String    @id @default(cuid())
   name          String?
+  /// @zod.string.email({ message: "Invalid email" })
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  /// @zod.string.min(6, { message: "Password must be at least 6 characters" })
   password      String?
   accounts      Account[]
 }
