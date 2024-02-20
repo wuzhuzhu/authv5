@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 import { z } from "zod";
 
 import { signIn } from "@/lib/auth";
-import { DEFAULT_LOGIN_REDIRECT } from "@/lib/constants/route";
+import { DEFAULT_LOGIN_REDIRECT } from "@/lib/constants/path";
 import db from "@/lib/db";
 import { sleep } from "@/lib/utils";
 import { AuthError } from "next-auth";

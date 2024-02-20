@@ -5,7 +5,7 @@ import {
 	apiAuthPrefix,
 	authRoutes,
 	publicRoutes,
-} from "@/lib/constants/route";
+} from "@/lib/constants/path";
 import NextAuth, { Session } from "next-auth";
 import { NextRequest } from "next/server";
 export interface NextAuthRequest extends NextRequest {
