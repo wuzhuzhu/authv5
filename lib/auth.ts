@@ -1,10 +1,16 @@
 import authConfig from "@/lib/auth.config";
 import db from "@/lib/db";
+import { UserRoleType } from "@/lib/schema";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
 import NextAuth from "next-auth";
 
-const prisma = new PrismaClient();
+declare module "next-auth" {
+	interface User {
+		/** The user's postal address. */
+		role: UserRoleType;
+	}
+}
 
 export const {
 	handlers: { GET, POST },
@@ -14,21 +20,12 @@ export const {
 } = NextAuth({
 	callbacks: {
 		async jwt({ token, user, account, profile, isNewUser }) {
-			// if (!token.sub) return token;
-
-			// const existingUser = await db.user.findUnique({
-			// 	where: { id: token.sub },
-			// });
-
-			// if (!existingUser) return token;
-
-			console.log(token, user, account, profile, isNewUser);
-
-			console.log({ token, user, profile });
+			if (user) token.role = user.role;
 			return token;
 		},
 		async session({ session, user, token }) {
-			console.log("sessionToken: ", token);
+			// console.log("sessionToken: ", token);
+			session.user.role = token.role as UserRoleType;
 			return {
 				...session,
 				id: token?.sub,

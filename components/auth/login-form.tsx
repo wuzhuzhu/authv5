@@ -1,7 +1,7 @@
 "use client";
 
 import CardWrapper from "@/components/auth/card-wrapper";
-import { loginActon } from "@/lib/actions/auth";
+import { loginActon } from "@/lib/actions/auth-action";
 import { UserCreateInputSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -35,11 +35,15 @@ const LoginForm = () => {
 		startTransition(() => {
 			setError("");
 
-			loginActon(values).then((res) => {
-				if (res?.success === false) {
-					setError(res?.message || "Something went wrong");
-				}
-			});
+			loginActon(values)
+				.then((res) => {
+					if (res?.success === false) {
+						setError(res?.message || "Something went wrong");
+					}
+				})
+				.catch((err) => {
+					setError(err.message);
+				});
 		});
 	};
 
