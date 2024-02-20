@@ -5,7 +5,6 @@ import * as z from "zod";
 // copy from ./prisma/generated/zod, paste here for speed and flexibility
 
 export const UserRoleSchema = z.enum(["USER", "ADMIN"]);
-export type UserRoleType = `${z.infer<typeof UserRoleSchema>}`;
 
 export const UserSchema = z.object({
 	role: UserRoleSchema,

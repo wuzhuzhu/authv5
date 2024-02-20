@@ -4,6 +4,7 @@ import { signOut } from "@/lib/auth";
 
 const SettingPage = async () => {
 	const session = await auth();
+
 	return (
 		<div>
 			<form
