@@ -1,6 +1,6 @@
 "use server";
 
-import { UserCreateInputSchema } from "@/prisma/generated/zod";
+import { UserCreateInputSchema } from "@/lib/schema";
 import bcrypt from "bcryptjs";
 import { z } from "zod";
 

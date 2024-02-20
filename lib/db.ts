@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
+// https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices#solution
+
 declare global {
 	// eslint-disable-next-line no-var
 	// biome-ignore lint/style/noVar: <explanation>
