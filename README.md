@@ -1,5 +1,12 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## NOTE:
+(Use vscode settings to exclude the files)
+bunx prisma generate will generate zod schema from prisma schema.
+This is ignored in .gitignore: /prisma/generated/zod/index.ts.
+You should always delete the generated zod schema for better IDE performance
+Copy the code needed into @/lib/schema.ts when needed.
+
 ## TODO
 [] email verification flow
 [] send register confirmation email

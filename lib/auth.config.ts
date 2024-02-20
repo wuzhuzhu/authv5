@@ -4,7 +4,6 @@ import Credentials from "next-auth/providers/credentials";
 import GitHub from "next-auth/providers/github";
 
 import db from "@/lib/db";
-import { pick } from "lodash-es";
 import type { NextAuthConfig, User } from "next-auth";
 import { z } from "zod";
 
@@ -33,8 +32,7 @@ export default {
 
 					// TODO: check emailVerified
 					const passwordMatch = bcrypt.compareSync(password, user.password);
-					if (passwordMatch)
-						return pick(user, ["id", "name", "email", "image"]);
+					if (passwordMatch) return user;
 				} else {
 					return null;
 				}
