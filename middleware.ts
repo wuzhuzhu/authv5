@@ -7,6 +7,7 @@ import {
 	publicRoutes,
 } from "@/lib/constants/path";
 import NextAuth, { Session } from "next-auth";
+import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 export interface NextAuthRequest extends NextRequest {
 	auth: Session | null;
@@ -16,6 +17,7 @@ export const { auth } = NextAuth(authConfig);
 
 export default auth(
 	(req: NextRequest & { auth: Session | null }): Response | undefined => {
+		const response = NextResponse.next();
 		const { nextUrl } = req;
 		const isLoggedIn = !!req.auth;
 
@@ -23,16 +25,16 @@ export default auth(
 		const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
 		const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-		if (isApiAuthRoute) return;
+		if (isApiAuthRoute) return response;
 		if (isAuthRoute) {
 			if (isLoggedIn)
-				return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
-			return;
+				return NextResponse.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+			return response;
 		}
 		if (!isLoggedIn && !isPublicRoute)
-			return Response.redirect(new URL(LOGIN_ROUTE, nextUrl));
+			return NextResponse.redirect(new URL(LOGIN_ROUTE, nextUrl));
 
-		return;
+		return response;
 
 		// console.log("[FROM Middleware]Route:", req.nextUrl.pathname);
 	},

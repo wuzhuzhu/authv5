@@ -2,12 +2,18 @@ import authConfig from "@/lib/auth.config";
 import db from "@/lib/db";
 import { UserRoleType } from "@/lib/schema";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import { PrismaClient } from "@prisma/client";
 import NextAuth from "next-auth";
 
 declare module "next-auth" {
 	interface User {
 		/** The user's postal address. */
+
+		role: UserRoleType;
+	}
+
+	interface Session {
+		/** The user's postal address. */
+		id: string;
 		role: UserRoleType;
 	}
 }
