@@ -7,7 +7,6 @@ import NextAuth from "next-auth";
 declare module "next-auth" {
 	interface User {
 		/** The user's postal address. */
-
 		role: UserRole;
 	}
 
@@ -24,10 +23,26 @@ export const {
 	signIn,
 	signOut,
 } = NextAuth({
+	pages: {
+		signIn: "/auth/login",
+		error: "/auth/error",
+	},
+	events: {
+		async linkAccount({ user, isNewUser }) {
+			console.log("!!!!!from events", { user, isNewUser });
+			await db.user.update({
+				where: { id: user?.id },
+				data: { emailVerified: new Date() },
+			});
+		},
+	},
 	callbacks: {
 		async signIn({ user, account, profile, email, credentials }) {
 			// has password means login with email and password, and no email verified user will be blocked
-			// if (credentials?.password && !user.emailVerified) return false;
+			// if (["google", "github"].includes(account.provider)) {
+			// 	return profile.email_verified
+			// }
+			// if (!user.emailVerified) return false;
 			// TODO: tell user to verify email
 			// return a URL to redirect to: https://next-auth.js.org/configuration/callbacks
 			// return '/tell-user-to-verify'

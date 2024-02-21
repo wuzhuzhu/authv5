@@ -50,8 +50,7 @@ const LoginForm = () => {
 	return (
 		<CardWrapper
 			headerLabel="SiliconFlow"
-			backButtonLabel="Don't have an account?"
-			backButtonHref="/auth/register"
+			terms="By signing up, I agree to Siliconflow Terms of Service and Privacy Policy."
 			showSocial
 		>
 			<Form {...form}>

@@ -14,8 +14,9 @@ interface CardWrapperProps {
 	children: React.ReactNode;
 	headerLabel: string;
 	cardDescription?: string;
-	backButtonLabel: string;
-	backButtonHref: string;
+	terms?: string;
+	backButtonLabel?: string;
+	backButtonHref?: string;
 	showSocial?: boolean;
 }
 
@@ -26,6 +27,7 @@ const CardWrapper = ({
 	backButtonLabel,
 	backButtonHref,
 	showSocial,
+	terms,
 }: CardWrapperProps) => {
 	return (
 		<Card className="w-[400px] shadow-md">
@@ -44,11 +46,10 @@ const CardWrapper = ({
 				</CardFooter>
 			)}
 			<CardFooter>
-				{/* <BackButton label={backButtonLabel} href={backButtonHref} /> */}
-				<p className="muted">
-					By signing up, I agree to Siliconflow Terms of Service and Privacy
-					Policy.
-				</p>
+				{backButtonLabel && (
+					<BackButton label={backButtonLabel} href={backButtonHref} />
+				)}
+				{terms && <p className="muted">{terms}</p>}
 			</CardFooter>
 		</Card>
 	);
