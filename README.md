@@ -8,12 +8,12 @@ You should always delete the generated zod schema for better IDE performance
 Copy the code needed into @/lib/schema.ts when needed.
 
 ## TODO
-[] fix google oauth
-[] use server action to login on social.tsx
-[] email verification flow
-[] oauth user has same email link to email user
-[] send register confirmation email
-[] implement DTO layer: https://nextjs.org/blog/security-nextjs-server-components-actions
+- [ ] fix google oauth
+- [ ] use server action to login on social.tsx
+- [ ] email verification flow
+- [ ] oauth user has same email link to email user
+- [ ] send register confirmation email
+- [ ] implement DTO layer: https://nextjs.org/blog/security-nextjs-server-components-actions
 
 ## Getting Started
 
