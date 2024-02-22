@@ -19,6 +19,7 @@ export default auth(
 	(req: NextRequest & { auth: Session | null }): Response | undefined => {
 		const response = NextResponse.next();
 		const { nextUrl } = req;
+		// console.log("[FROM Middleware]Route:", nextUrl.pathname);
 		const isLoggedIn = !!req.auth;
 
 		const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
