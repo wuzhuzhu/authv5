@@ -17,18 +17,25 @@ export const generateVerificationToken = async (email: string) => {
 				id: existingToken.id,
 			},
 		});
-		console.log("deleted.");
+		console.log("deleted existingToken");
 	}
 
-	const verificationToken = db.verificationToken.create({
+	const verificationToken = await db.verificationToken.create({
 		data: {
 			token,
 			expiresAt,
 			email,
 		},
 	});
- 
-	await sendVerificationEmail(email, token);
+	console.log("a new token generated: ", verificationToken.expiresAt.getTime());
+
+	try {
+		await sendVerificationEmail(email, token);
+	} catch (e) {
+		console.error("Failed to send email.");
+		throw e;
+	}
+	console.log("Email sent.");
 
 	return verificationToken;
 };

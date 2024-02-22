@@ -3,7 +3,7 @@
  * @type {string[]}
  */
 
-export const publicRoutes = ["/"];
+export const publicRoutes = ["/", "/test"];
 
 /**
  * @description define all auth routes are used for authentication, will redirect logged in users to /settings
@@ -14,7 +14,8 @@ export const authRoutes = [
 	"/auth/login",
 	"/auth/register",
 	"/auth/error",
-	"/auth/verify",
+	"/auth/no-verify",
+	"/auth/verify-email",
 ];
 
 /**

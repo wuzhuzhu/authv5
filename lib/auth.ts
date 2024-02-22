@@ -8,7 +8,7 @@ declare module "next-auth" {
 	interface User {
 		/** The user's postal address. */
 		role: UserRole;
-		emailVerified: Date;
+		emailVerified?: Date | null;
 	}
 
 	interface Session {
@@ -45,11 +45,12 @@ export const {
 	},
 	callbacks: {
 		async signIn({ user, account, profile, email, credentials }) {
+
 			if (["google", "github"].includes(account?.provider || "")) {
 				return true;
 			}
 			if (account?.provider === "credentials" && !user?.emailVerified) {
-				return "/auth/verify";
+				return `/auth/no-verify/${encodeURIComponent(user?.email || "")}`;
 			}
 			return true;
 		},
