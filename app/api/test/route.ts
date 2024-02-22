@@ -2,7 +2,7 @@
 // export const preferredRegion = "auto";
 // export const runtime = 'edge'
 // force dynamic
-export const dynamic = "force-dynamic"; // defaults to auto
+// export const dynamic = "force-dynamic"; // defaults to auto
 
 export async function GET(request: Request) {
 	const { searchParams } = new URL(request.url);
