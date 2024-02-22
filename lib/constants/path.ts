@@ -3,7 +3,7 @@
  * @type {string[]}
  */
 
-export const publicRoutes = ["/", "/speed-test", "/api/test"];
+export const publicRoutes = ["/", "/speed-test", "/api/test", "/api/test-edge"];
 
 /**
  * @description define all auth routes are used for authentication, will redirect logged in users to /settings
