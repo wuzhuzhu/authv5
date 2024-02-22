@@ -4,6 +4,7 @@ import CardWrapper from "@/components/auth/card-wrapper";
 import { loginActon } from "@/lib/actions/auth-action";
 import { UserCreateInputSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -21,6 +22,11 @@ import { Input } from "@/components/ui/input";
 import { useState, useTransition } from "react";
 
 const LoginForm = () => {
+	const searchParams = useSearchParams();
+	const urlError =
+		searchParams.get("error") === "OauthAccountNotLinked"
+			? "Email already in use with different provider"
+			: "";
 	const [error, setError] = useState("");
 	const [isPending, startTransition] = useTransition();
 	const form = useForm<z.infer<typeof UserCreateInputSchema>>({
@@ -73,6 +79,7 @@ const LoginForm = () => {
 								</FormItem>
 							)}
 						/>
+
 						<FormField
 							control={form.control}
 							name="password"
@@ -92,7 +99,7 @@ const LoginForm = () => {
 							)}
 						/>
 					</div>
-					{error && <FormError message={error} />}
+					{error || (urlError && <FormError message={error || urlError} />)}
 					<LoadingButton type="submit" className="w-full" isLoading={isPending}>
 						{isPending ? "Loading" : "Login / Register"}
 					</LoadingButton>
@@ -101,5 +108,4 @@ const LoginForm = () => {
 		</CardWrapper>
 	);
 };
-
 export default LoginForm;

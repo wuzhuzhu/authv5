@@ -1,9 +1,4 @@
 {
-	"editor.codeActionsOnSave": {
-		"source.organizeImports.biome": "explicit",
-		"quickfix.biome": "explicit"
-	},
-	"editor.defaultFormatter": "biomejs.biome",
 	"javascript.preferences.importModuleSpecifier": "project-relative",
 	"cSpell.words": ["Signin"],
 	"files.exclude": {
@@ -13,6 +8,6 @@
 		"**/CVS": true,
 		"**/.DS_Store": true,
 		"**/Thumbs.db": true,
-		"prisma/generated": true,
+		"prisma/generated": true
 	}
 }
