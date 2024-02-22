@@ -1,3 +1,6 @@
+// TODO: 优化项,强制新加坡?
+// export const preferredRegion = "auto";
+// export const runtime = 'edge'
 // force dynamic
 export const dynamic = "force-dynamic"; // defaults to auto
 
