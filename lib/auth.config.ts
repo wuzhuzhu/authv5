@@ -42,7 +42,7 @@ export default {
 		GitHub({
 			clientId: process.env.AUTH_GITHUB_ID,
 			clientSecret: process.env.AUTH_GITHUB_SECRET,
-			// allowDangerousEmailAccountLinking: true, // TODO: 
+			allowDangerousEmailAccountLinking: true,
 		}),
 		Google,
 	],

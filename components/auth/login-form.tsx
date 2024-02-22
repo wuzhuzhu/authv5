@@ -24,88 +24,98 @@ import { useState, useTransition } from "react";
 const LoginForm = () => {
 	const searchParams = useSearchParams();
 	const urlError =
-		searchParams.get("error") === "OauthAccountNotLinked"
-			? "Email already in use with different provider"
-			: "";
-	const [error, setError] = useState("");
-	const [isPending, startTransition] = useTransition();
-	const form = useForm<z.infer<typeof UserCreateInputSchema>>({
-		resolver: zodResolver(UserCreateInputSchema),
-		defaultValues: {
-			email: "",
-			password: "",
-		},
-	});
+    searchParams.get("error") === "OAuthAccountNotLinked"
+      ? "Email already in use with different provider"
+      : "";
+  const [error, setError] = useState("");
+  const [isPending, startTransition] = useTransition();
+  const form = useForm<z.infer<typeof UserCreateInputSchema>>({
+    resolver: zodResolver(UserCreateInputSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
-	const onSubmit = (values: z.infer<typeof UserCreateInputSchema>) => {
-		startTransition(() => {
-			setError("");
+  const onSubmit = (
+    values: z.infer<typeof UserCreateInputSchema>
+  ) => {
+    startTransition(() => {
+      setError("");
 
-			loginActon(values)
-				.then((res) => {
-					if (res?.success === false) {
-						setError(res?.message || "Something went wrong");
-					}
-				})
-				.catch((err) => {
-					setError(err.message);
-				});
-		});
-	};
+      loginActon(values)
+        .then((res) => {
+          if (res?.success === false) {
+            setError(res?.message || "Something went wrong");
+          }
+        })
+        .catch((err) => {
+          setError(err.message);
+        });
+    });
+  };
 
-	return (
-		<CardWrapper
-			headerLabel="SiliconFlow"
-			terms="By signing up, I agree to Siliconflow Terms of Service and Privacy Policy."
-			showSocial
-		>
-			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-					<div className="space-y-4">
-						<FormField
-							control={form.control}
-							name="email"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Email</FormLabel>
-									<FormControl>
-										<Input
-											{...field}
-											placeholder="example@test.com"
-											disabled={isPending}
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
+  return (
+    <CardWrapper
+      headerLabel="SiliconFlow"
+      terms="By signing up, I agree to Siliconflow Terms of Service and Privacy Policy."
+      showSocial
+    >
+      <Form {...form}>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-6"
+        >
+          <div className="space-y-4">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder="example@test.com"
+                      disabled={isPending}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-						<FormField
-							control={form.control}
-							name="password"
-							render={({ field }) => (
-								<FormItem>
-									<FormLabel>Password</FormLabel>
-									<FormControl>
-										<Input
-											{...field}
-											type="password"
-											placeholder="******"
-											disabled={isPending}
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-					</div>
-					{error || (urlError && <FormError message={error || urlError} />)}
-					<LoadingButton type="submit" className="w-full" isLoading={isPending}>
-						{isPending ? "Loading" : "Login / Register"}
-					</LoadingButton>
-				</form>
-			</Form>
-		</CardWrapper>
-	);
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      type="password"
+                      placeholder="******"
+                      disabled={isPending}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          {error ||
+            (urlError && <FormError message={error || urlError} />)}
+          <LoadingButton
+            type="submit"
+            className="w-full"
+            isLoading={isPending}
+          >
+            {isPending ? "Loading" : "Login / Register"}
+          </LoadingButton>
+        </form>
+      </Form>
+    </CardWrapper>
+  );
 };
 export default LoginForm;

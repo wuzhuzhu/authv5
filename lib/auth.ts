@@ -28,12 +28,18 @@ export const {
 		error: "/auth/error",
 	},
 	events: {
-		async linkAccount({ user, isNewUser }) {
-			console.log("!!!!!from events", { user, isNewUser });
+		async linkAccount({ user, profile }) {
+			console.log("!!!!!from events!!!", { user, profile });
 			await db.user.update({
 				where: { id: user?.id },
 				data: { emailVerified: new Date() },
 			});
+			if (profile.image && !user.image) {
+				await db.user.update({
+					where: { id: user?.id },
+					data: { image: profile.image },
+				});
+			}
 		},
 	},
 	callbacks: {
