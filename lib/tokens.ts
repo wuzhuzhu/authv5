@@ -1,6 +1,7 @@
 import { VERIFICATION_TOKEN_EXPIRES } from "@/lib/constants/config";
 import { getVerificationByEmail } from "@/lib/data/verification-token";
 import db from "@/lib/db";
+import { sendVerificationEmail } from "@/lib/mail";
 import { v4 as uuidv4 } from "uuid";
 
 export const generateVerificationToken = async (email: string) => {
@@ -26,6 +27,8 @@ export const generateVerificationToken = async (email: string) => {
 			email,
 		},
 	});
+ 
+	await sendVerificationEmail(email, token);
 
 	return verificationToken;
 };

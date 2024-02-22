@@ -48,7 +48,7 @@ export const {
 			if (["google", "github"].includes(account?.provider || "")) {
 				return true;
 			}
-			if (!user?.emailVerified) {
+			if (account?.provider === "credentials" && !user?.emailVerified) {
 				return "/auth/verify";
 			}
 			return true;

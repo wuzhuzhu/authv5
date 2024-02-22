@@ -31,14 +31,6 @@ export const loginActon = async (
 		});
 
 		if (existingUser) {
-			// if (!existingUser.emailVerified) {
-			// 	// 用户存在但未验证
-			// 	const verificationToken = await generateVerificationToken(email);
-			// 	return {
-			// 		success: true,
-			// 		message: "Check Verification email",
-			// 	};
-			// }
 			// 用户登录流程
 			try {
 				await signIn("credentials", {
@@ -69,15 +61,15 @@ export const loginActon = async (
 		if (password) {
 			// 新用户注册流程
 			// 密码注册
-			const hashedPassword = await bcrypt.hash(password, 10);
+			const verificationToken = await generateVerificationToken(email);
 			// create User
+			const hashedPassword = await bcrypt.hash(password, 10);
 			const newUser = await db.user.create({
 				data: {
 					email,
 					password: hashedPassword,
 				},
 			});
-			const verificationToken = await generateVerificationToken(email);
 
 			console.log("action: ", verificationToken);
 
