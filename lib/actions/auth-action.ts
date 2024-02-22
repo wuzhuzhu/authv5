@@ -9,6 +9,7 @@ import { DEFAULT_LOGIN_REDIRECT } from "@/lib/constants/path";
 import db from "@/lib/db";
 import { sleep } from "@/lib/utils";
 import { AuthError } from "next-auth";
+import { generateVerificationToken } from "../tokens";
 
 export const loginActon = async (
 	values: z.infer<typeof UserCreateInputSchema>,
@@ -30,6 +31,14 @@ export const loginActon = async (
 		});
 
 		if (existingUser) {
+			// if (!existingUser.emailVerified) {
+			// 	// 用户存在但未验证
+			// 	const verificationToken = await generateVerificationToken(email);
+			// 	return {
+			// 		success: true,
+			// 		message: "Check Verification email",
+			// 	};
+			// }
 			// 用户登录流程
 			try {
 				await signIn("credentials", {
@@ -57,8 +66,8 @@ export const loginActon = async (
 				throw error;
 			}
 		}
-		// 新用户注册流程
 		if (password) {
+			// 新用户注册流程
 			// 密码注册
 			const hashedPassword = await bcrypt.hash(password, 10);
 			// create User
@@ -68,12 +77,21 @@ export const loginActon = async (
 					password: hashedPassword,
 				},
 			});
-			// TODO: email verification flow
-			await signIn("credentials", {
-				email,
-				password,
-				redirectTo: DEFAULT_LOGIN_REDIRECT,
-			});
+			const verificationToken = await generateVerificationToken(email);
+
+			console.log("action: ", verificationToken);
+
+			return {
+				success: true,
+				message: "Verification email sent",
+				// data: newUser,
+				// verificationToken,
+			};
+			// await signIn("credentials", {
+			// 	email,
+			// 	password,
+			// 	redirectTo: DEFAULT_LOGIN_REDIRECT,
+			// });
 		}
 	} else {
 		// 验证失败

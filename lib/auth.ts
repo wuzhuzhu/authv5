@@ -8,6 +8,7 @@ declare module "next-auth" {
 	interface User {
 		/** The user's postal address. */
 		role: UserRole;
+		emailVerified: Date;
 	}
 
 	interface Session {
@@ -44,14 +45,12 @@ export const {
 	},
 	callbacks: {
 		async signIn({ user, account, profile, email, credentials }) {
-			// has password means login with email and password, and no email verified user will be blocked
-			// if (["google", "github"].includes(account.provider)) {
-			// 	return profile.email_verified
-			// }
-			// if (!user.emailVerified) return false;
-			// TODO: tell user to verify email
-			// return a URL to redirect to: https://next-auth.js.org/configuration/callbacks
-			// return '/tell-user-to-verify'
+			if (["google", "github"].includes(account?.provider || "")) {
+				return true;
+			}
+			if (!user?.emailVerified) {
+				return "/auth/verify";
+			}
 			return true;
 		},
 		async jwt({ token, user, account, profile, isNewUser }) {

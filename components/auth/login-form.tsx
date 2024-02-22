@@ -9,25 +9,27 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import FormError from "@/components/shared/form-error";
+import FormSuccess from "@/components/shared/form-success";
 import LoadingButton from "@/components/shared/loading-button";
 import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useState, useTransition } from "react";
 
 const LoginForm = () => {
-	const searchParams = useSearchParams();
-	const urlError =
+  const searchParams = useSearchParams();
+  const urlError =
     searchParams.get("error") === "OAuthAccountNotLinked"
       ? "Email already in use with different provider"
       : "";
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [isPending, startTransition] = useTransition();
   const form = useForm<z.infer<typeof UserCreateInputSchema>>({
     resolver: zodResolver(UserCreateInputSchema),
@@ -42,11 +44,16 @@ const LoginForm = () => {
   ) => {
     startTransition(() => {
       setError("");
+      setSuccess("");
 
       loginActon(values)
         .then((res) => {
           if (res?.success === false) {
             setError(res?.message || "Something went wrong");
+          } else {
+            if (res?.success === true && res?.message) {
+              setSuccess(res?.message);
+            }
           }
         })
         .catch((err) => {
@@ -104,8 +111,10 @@ const LoginForm = () => {
               )}
             />
           </div>
-          {error ||
-            (urlError && <FormError message={error || urlError} />)}
+          {(error || urlError) && (
+            <FormError message={error || urlError} />
+          )}
+          {success && <FormSuccess message={success} />}
           <LoadingButton
             type="submit"
             className="w-full"

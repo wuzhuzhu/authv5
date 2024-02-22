@@ -1,0 +1,1 @@
+export const VERIFICATION_TOKEN_EXPIRES = 3600 * 1000;

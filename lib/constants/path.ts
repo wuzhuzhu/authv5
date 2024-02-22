@@ -10,7 +10,12 @@ export const publicRoutes = ["/"];
  * @type {string[]}
  */
 
-export const authRoutes = ["/auth/login", "/auth/register", "/auth/error"];
+export const authRoutes = [
+	"/auth/login",
+	"/auth/register",
+	"/auth/error",
+	"/auth/verify",
+];
 
 /**
  * @description for api authentication routes, will always allow not logged in users to access
