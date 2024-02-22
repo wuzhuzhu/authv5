@@ -5,6 +5,7 @@ import { loginActon } from "@/lib/actions/auth-action";
 import { UserCreateInputSchema } from "@/lib/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -63,68 +64,69 @@ const LoginForm = () => {
   };
 
   return (
-    <CardWrapper
-      headerLabel="SiliconFlow"
-      terms="By signing up, I agree to Siliconflow Terms of Service and Privacy Policy."
-      showSocial
-    >
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-6"
-        >
-          <div className="space-y-4">
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="example@test.com"
-                      disabled={isPending}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      type="password"
-                      placeholder="******"
-                      disabled={isPending}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-          {(error || urlError) && (
-            <FormError message={error || urlError} />
-          )}
-          {success && <FormSuccess message={success} />}
-          <LoadingButton
-            type="submit"
-            className="w-full"
-            isLoading={isPending}
+    <Suspense>
+      <CardWrapper
+        headerLabel="SiliconFlow"
+        terms="By signing up, I agree to Siliconflow Terms of Service and Privacy Policy."
+        showSocial
+      >
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-6"
           >
-            {isPending ? "Loading" : "Login / Register"}
-          </LoadingButton>
-        </form>
-      </Form>
-    </CardWrapper>
+            <div className="space-y-4">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder="example@test.com"
+                        disabled={isPending}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        type="password"
+                        placeholder="******"
+                        disabled={isPending}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            {(error || urlError) && (
+              <FormError message={error || urlError} />
+            )}
+            {success && <FormSuccess message={success} />}
+            <LoadingButton
+              type="submit"
+              className="w-full"
+              isLoading={isPending}
+            >
+              {isPending ? "Loading" : "Login / Register"}
+            </LoadingButton>
+          </form>
+        </Form>
+      </CardWrapper>
+    </Suspense>
   );
 };
 export default LoginForm;
