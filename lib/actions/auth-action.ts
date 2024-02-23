@@ -94,3 +94,59 @@ export const loginActon = async (
 		};
 	}
 };
+
+export const verifyEmailByToken = async (token: string) => {
+	const existingToken = await db.verificationToken.findUnique({
+		where: {
+			token,
+		},
+	});
+
+	if (existingToken) {
+		const hasExpired = existingToken?.expiresAt < new Date();
+		if (hasExpired) {
+			return {
+				success: false,
+				message: "Token has expired",
+			};
+		}
+
+		const existingUser = await db.user.findUnique({
+			where: {
+				email: existingToken.email,
+			},
+		});
+		if (!existingUser) {
+			return {
+				success: false,
+				message: "User not found",
+			};
+		}
+
+		const user = await db.user.update({
+			where: {
+				email: existingToken.email,
+			},
+			data: {
+				emailVerified: new Date(),
+				email: existingToken.email, // reused by changing email process
+			},
+		});
+
+		await db.verificationToken.delete({
+			where: {
+				id: existingToken.id,
+			},
+		});
+
+		return {
+			success: true,
+			message: "Email verified",
+			data: user,
+		};
+	}
+	return {
+		success: false,
+		message: "Invalid token",
+	};
+};

@@ -5,8 +5,10 @@ export const runtime = "edge";
 // export const dynamic = "force-dynamic"; // defaults to auto
 
 export async function GET(request: Request) {
+	// 使用searchParams 会强制取消缓存
 	const { searchParams } = new URL(request.url);
 	const id = searchParams.get("id");
+	
 	const start = Date.now();
 	const res = await fetch(
 		"https://cloud.siliconflow.com/api/v1/playground/cloud",

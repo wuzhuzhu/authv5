@@ -1,13 +1,14 @@
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST as string,
-  port: Number(process.env.SMTP_PORT),
-  secure: true,
-  auth: {
-    user: process.env.SMTP_USER as string,
-    pass: process.env.SMTP_PASSWORD as string,
-  },
+	host: process.env.SMTP_HOST as string,
+	port: Number(process.env.SMTP_PORT),
+	secure: false,
+	requireTLS: true,
+	auth: {
+		user: process.env.SMTP_USER as string,
+		pass: process.env.SMTP_PASSWORD as string,
+	},
 });
 
 // await transporter.sendMail(options);

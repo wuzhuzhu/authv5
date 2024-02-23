@@ -46,7 +46,7 @@ export const {
 	callbacks: {
 		async signIn({ user, account, profile, email, credentials }) {
 
-			if (["google", "github"].includes(account?.provider || "")) {
+			if (account?.provider !== "credentials") {
 				return true;
 			}
 			if (account?.provider === "credentials" && !user?.emailVerified) {
