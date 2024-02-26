@@ -165,3 +165,5 @@ export const verifyEmailByToken = async (token: string, email: string) => {
 		message: "Invalid token",
 	};
 };
+
+export const sendResetPasswordEmail = async (email: string) => {};

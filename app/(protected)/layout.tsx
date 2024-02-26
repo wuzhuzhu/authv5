@@ -6,7 +6,7 @@ export default function ProtectedLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-full min-h-full">
+    <div className="w-full min-h-full bg-background">
       <Header />
       {children}
     </div>
