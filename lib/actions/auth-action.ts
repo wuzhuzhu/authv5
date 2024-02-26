@@ -69,7 +69,7 @@ export const loginActon = async (
 			}
 		}
 		if (password) {
-			// 新用户注册流程
+			// 没有现存用户,且有密码: 新用户注册流程
 			// 密码注册
 			const verificationToken = await generateVerificationToken(email);
 			// create User
