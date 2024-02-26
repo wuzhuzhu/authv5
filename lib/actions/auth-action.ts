@@ -28,11 +28,21 @@ export const loginActon = async (
 			where: {
 				email,
 			},
+			include: {
+				accounts: true,
+			},
 		});
 
 		if (existingUser) {
 			// 用户登录流程
 			try {
+				if (!existingUser.password && existingUser.accounts.length > 0) {
+					// if no password and has oauth account, tell user login with oauth and set password
+					return {
+						success: false,
+						message: "Please login with your OAuth account and set a password",
+					};
+				}
 				await signIn("credentials", {
 					email,
 					password,
