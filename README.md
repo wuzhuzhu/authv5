@@ -10,6 +10,7 @@ Copy the code needed into @/lib/schema.ts when needed.
 ## TODO
 - [ ] fix google oauth
 - [ ] account link logic: 1, pw first:add image to user 2, oauth first: add pw to user
+- [ ] default loading page/skeleton components set
 - [ ] use server action to login on social.tsx
 - [ ] email verification flow
 - [ ] oauth user has same email link to email user
