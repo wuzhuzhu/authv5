@@ -17,7 +17,7 @@ export const sendVerificationEmail = async (
   to: string,
   token: string
 ) => {
-  const confirmationLink = `${process.env.DOMAIN}/auth/verify-email?token=${token}`;
+  const confirmationLink = `${process.env.DOMAIN}/auth/verify-email?token=${token}&email=${to}`;
   const options = {
     from: process.env.EMAIL_FROM,
     to,

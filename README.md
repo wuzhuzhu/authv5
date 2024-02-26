@@ -30,9 +30,17 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Second, setting up the .env file from .env.example
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Get a Mysql dev database locally running or cloud. Generate the database url for prisma.
+2. Setup nodemailer smtp
+3. Setup Oauth credentials for google and github
+4. other settings
+
+Then, run `prisma db push`, init database schema.
+
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 

@@ -95,14 +95,27 @@ export const loginActon = async (
 	}
 };
 
-export const verifyEmailByToken = async (token: string) => {
+export const verifyEmailByToken = async (token: string, email: string) => {
+	const existingUser = await db.user.findUnique({
+		where: {
+			email,
+		},
+	});
+
+	if (existingUser?.emailVerified) {
+		return {
+			success: true,
+			message: "User already verified",
+		};
+	}
+
 	const existingToken = await db.verificationToken.findUnique({
 		where: {
 			token,
 		},
 	});
 
-	if (existingToken) {
+	if (existingToken && existingUser) {
 		const hasExpired = existingToken?.expiresAt < new Date();
 		if (hasExpired) {
 			return {
@@ -111,21 +124,9 @@ export const verifyEmailByToken = async (token: string) => {
 			};
 		}
 
-		const existingUser = await db.user.findUnique({
-			where: {
-				email: existingToken.email,
-			},
-		});
-		if (!existingUser) {
-			return {
-				success: false,
-				message: "User not found",
-			};
-		}
-
 		const user = await db.user.update({
 			where: {
-				email: existingToken.email,
+				email: email,
 			},
 			data: {
 				emailVerified: new Date(),
@@ -133,11 +134,15 @@ export const verifyEmailByToken = async (token: string) => {
 			},
 		});
 
+		console.log("user updated", user);
+
 		await db.verificationToken.delete({
 			where: {
 				id: existingToken.id,
 			},
 		});
+
+		console.log("token deleted");
 
 		return {
 			success: true,
