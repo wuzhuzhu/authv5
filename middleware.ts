@@ -17,14 +17,7 @@ export const { auth } = NextAuth(authConfig);
 
 export default auth(
 	(req: NextRequest & { auth: Session | null }): Response | undefined => {
-		// consturct a new Headers object from the request headers 
-		const requestHeaders = new Headers(req.headers);
-		requestHeaders.set('x-pathname', req.nextUrl.pathname);
-		const response = NextResponse.next({
-			request: {
-				headers: requestHeaders,
-			}
-		});
+		const response = NextResponse.next();
 		const { nextUrl } = req;
 		// console.log("[FROM Middleware]Route:", nextUrl.pathname);
 		const isLoggedIn = !!req.auth;
