@@ -17,7 +17,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { auth, signOut } from "@/lib/auth";
 import { DEFAULT_AVATAR_URL } from "@/lib/constants/config";
-import { headers } from 'next/headers';
 
 import NavList from '@/components/auth/nav-list';
 
