@@ -1,5 +1,18 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# Github Repository
+[clone the repository code](https://github.com/siliconflow/web-kickstarter.git) 
+## Branches
+  **boilerplate**  
+  The boilerplate branch contains the basic template code for the project. This provides a starting point for new development.
+
+  **dev**   
+  The dev branch is used for ongoing development work. All new features and bug fixes are merged into dev during the development phase.
+
+  **main**
+  The main branch contains the production-ready source code. This branch contains thoroughly tested code deployed onto production。
+
+
 ## NOTE:
 (Use vscode settings to exclude the files)
 bunx prisma generate will generate zod schema from prisma schema.

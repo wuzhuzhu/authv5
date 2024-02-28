@@ -133,7 +133,7 @@ elements: 定义元素样式,如链接样式、输入框样式等
 
 @layer components {
   .sidebar {
-    @apply flex w-[300px] px-[24px] py-[4px] text-[18px] leading-[56px] items-center
+    @apply flex w-[300px] px-6 py-1 text-[18px] leading-[56px] items-center
   }
 
 }
