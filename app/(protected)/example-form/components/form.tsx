@@ -1,24 +1,46 @@
 "use client";
 
-import Form from "@rjsf/core";
-import { RJSFSchema } from "@rjsf/utils";
+import { exampleFormSchema } from "@/lib/forms/example-form/exampleFormSchema";
+import { exampleFormUiSchema } from "@/lib/forms/example-form/exampleFormUiSchema";
+import Form from "@/lib/forms/rjsf-shadcn-theme/rjsf-shadcn-theme";
 import validator from "@rjsf/validator-ajv8";
+import { JSONSchema7 } from "json-schema";
 
-const schema: RJSFSchema = {
-  title: "Todo",
+const testSchema: JSONSchema7 = {
+  title: "表单标题内容",
+  description: "简介内容,一些简单的介绍.",
   type: "object",
-  required: ["title"],
+  required: ["name"],
   properties: {
-    title: { type: "string", title: "Title", default: "A new task" },
-    done: { type: "boolean", title: "Done?", default: false },
+    name: {
+      type: "string",
+      title: "姓名",
+      default: "Ch",
+      minLength: 3,
+      // description: "请输入你的姓名",
+    },
+    age: {
+      type: "number",
+      title: "年龄",
+      default: 35,
+      minimum: 18,
+      // description: "请输入你的年龄",
+    },
+  },
+};
+
+const testUiSchema = {
+  "ui:submitButtonOptions": {
+    submitText: "提交",
   },
 };
 
 const DynamicForm = () => {
   return (
-    <div className="schema-form">
+    <div className="schema-form px-8 py-4 bg-muted">
       <Form
-        schema={schema}
+        schema={testSchema}
+        uiSchema={testUiSchema}
         validator={validator}
         onChange={(e) => console.log("change", e)}
         onSubmit={(e) => console.log("submit", e)}

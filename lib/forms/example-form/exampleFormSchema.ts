@@ -1,6 +1,6 @@
 import { JSONSchema7 } from "json-schema";
 
-export const registrationFormSchema: JSONSchema7 = {
+export const exampleFormSchema: JSONSchema7 = {
 	title: "A registration form",
 	description: "A simple form example.",
 	type: "object",

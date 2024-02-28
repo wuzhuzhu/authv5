@@ -1,4 +1,4 @@
-export const registrationFormUiSchema = {
+export const exampleFormUiSchema = {
 	updated: {
 		"ui:widget": "radio",
 		"ui:options": {
@@ -7,5 +7,8 @@ export const registrationFormUiSchema = {
 	},
 	waysToContact: {
 		"ui:widget": "checkboxes",
+	},
+	name: {
+		"ui:widget": "myCustomWidget",
 	},
 };

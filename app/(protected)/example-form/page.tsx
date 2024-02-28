@@ -1,10 +1,11 @@
+import { Suspense } from "react";
 import DynamicForm from "./components/form";
 
 const FormPage = () => {
   return (
-    <div>
+    <Suspense>
       <DynamicForm />
-    </div>
+    </Suspense>
   );
 };
 
