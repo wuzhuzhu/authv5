@@ -5,7 +5,7 @@ export default function Page() {
     <>
       <SidebarLayout >
         <div>
-          <h1>profile Page Content</h1>
+          <h1>API keys Page Content</h1>
         </div>
       </SidebarLayout>
 
