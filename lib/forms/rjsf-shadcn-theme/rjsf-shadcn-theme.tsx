@@ -1,6 +1,11 @@
 import { ThemeProps, withTheme } from "@rjsf/core";
 import { RegistryWidgetsType, WidgetProps } from "@rjsf/utils";
+// import templates
+import BaseInputTemplate from "./templates/BaseInputTemplate";
+import SubmitButton from "./templates/ButtonTemplates/SubmitButton";
 import ErrorListTemplate from "./templates/ErrorList";
+import TextWidget from "./widgets/TextWidget";
+import TextareaWidget from "./widgets/TextareaWidget";
 
 const MyCustomWidget = (props: WidgetProps) => {
   return (
@@ -17,17 +22,22 @@ const MyCustomWidget = (props: WidgetProps) => {
   );
 };
 
-const myTemplates = {
+const customizedTemplates = {
+  BaseInputTemplate,
   ErrorListTemplate,
+  ButtonTemplates: {
+    SubmitButton,
+  },
 };
 
-const myWidgets: RegistryWidgetsType = {
-  myCustomWidget: MyCustomWidget,
+const customizedWidget: RegistryWidgetsType = {
+  TextWidget,
+  TextareaWidget,
 };
 
 const theme: ThemeProps = {
-  templates: myTemplates,
-  widgets: { test: () => <div>test</div> },
+  templates: customizedTemplates,
+  widgets: customizedWidget,
 };
 
 const ThemedForm = withTheme(theme);

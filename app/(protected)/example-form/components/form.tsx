@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { exampleFormSchema } from "@/lib/forms/example-form/exampleFormSchema";
 import { exampleFormUiSchema } from "@/lib/forms/example-form/exampleFormUiSchema";
 import Form from "@/lib/forms/rjsf-shadcn-theme/rjsf-shadcn-theme";
@@ -39,8 +40,9 @@ const DynamicForm = () => {
   return (
     <div className="schema-form px-8 py-4 bg-muted">
       <Form
-        schema={testSchema}
-        uiSchema={testUiSchema}
+        schema={exampleFormSchema}
+        uiSchema={exampleFormUiSchema}
+        noHtml5Validate
         validator={validator}
         onChange={(e) => console.log("change", e)}
         onSubmit={(e) => console.log("submit", e)}

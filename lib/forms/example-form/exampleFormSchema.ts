@@ -1,48 +1,47 @@
 import { JSONSchema7 } from "json-schema";
 
 export const exampleFormSchema: JSONSchema7 = {
-	title: "A registration form",
-	description: "A simple form example.",
+	title: "Widgets",
 	type: "object",
-	required: ["firstName", "lastName"],
 	properties: {
-		name: {
+		notExist: {
+			title: "示例字符串输入",
 			type: "string",
-			title: "Name",
-			default: "John Smith",
+			default: "Not Exist",
+			minLength: 10,
 		},
-		gender: {
+		model: {
+			title: "Model",
 			type: "string",
-			title: "Gender",
-			enum: ["Male", "Female", "Other"],
+			enum: ["llama2-70b", "gpt-3.5"],
+			default: "llama2-70b",
 		},
-		hobbies: {
-			type: "array",
-			title: "Hobbies",
-			uniqueItems: true,
-			items: {
-				type: "string",
-				enum: ["Art", "Cooking", "Music", "Sports", "Movies"],
-			},
+		maxTokens: {
+			title: "Max Tokens",
+			type: "integer",
+			minimum: 1,
+			maximum: 2048,
+			default: 512,
 		},
-		birthdate: {
-			title: "Birth Date",
+		temperature: {
+			title: "Temperature",
+			type: "number",
+			minimum: 0,
+			maximum: 5,
+			default: 0.75,
+		},
+		topP: {
+			title: "Top P",
+			type: "number",
+			minimum: 0,
+			maximum: 1,
+			default: 0.8,
+		},
+		prompt: {
+			title: "Prompt",
 			type: "string",
-			format: "date",
-		},
-		updated: {
-			type: "string",
-			title: "Would you like us to keep you updated?",
-			enum: ["Yes", "No"],
-		},
-		waysToContact: {
-			type: "array",
-			title: "How do you want to receive updates?",
-			items: {
-				type: "string",
-				enum: ["email", "sms", "mail"],
-			},
-			uniqueItems: true,
+			default: "Help me write a love poem",
+			description: "Prompt for completion",
 		},
 	},
 };
