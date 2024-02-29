@@ -20,6 +20,7 @@ Copy the code needed into @/lib/schema.ts when needed.
 
 ## Getting Started
 
+
 First, run the development server:
 
 ```bash

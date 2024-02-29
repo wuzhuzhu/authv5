@@ -1,3 +1,4 @@
+
 import {
   Avatar,
   AvatarFallback,
@@ -16,6 +17,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { auth, signOut } from "@/lib/auth";
 import { DEFAULT_AVATAR_URL } from "@/lib/constants/config";
+
+import NavList from '@/components/auth/nav-list';
 
 export async function UserNav() {
   const session = await auth();
@@ -47,20 +50,7 @@ export async function UserNav() {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuItem>
-            Profile
-            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Billing
-            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            Settings
-            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
+        <NavList />
         <DropdownMenuSeparator />
         <form
           action={async () => {
