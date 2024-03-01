@@ -4,6 +4,7 @@ import { RegistryWidgetsType, WidgetProps } from "@rjsf/utils";
 import BaseInputTemplate from "./templates/BaseInputTemplate";
 import SubmitButton from "./templates/ButtonTemplates/SubmitButton";
 import ErrorListTemplate from "./templates/ErrorList";
+import FieldTemplate from "./templates/FieldTemplate";
 import TextWidget from "./widgets/TextWidget";
 import TextareaWidget from "./widgets/TextareaWidget";
 
@@ -24,6 +25,7 @@ const MyCustomWidget = (props: WidgetProps) => {
 
 const customizedTemplates = {
   BaseInputTemplate,
+  FieldTemplate,
   ErrorListTemplate,
   ButtonTemplates: {
     SubmitButton,

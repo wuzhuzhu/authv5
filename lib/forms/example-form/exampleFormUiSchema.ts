@@ -2,6 +2,9 @@ export const exampleFormUiSchema = {
 	prompt: {
 		"ui:widget": "textarea",
 	},
+	topP: {
+		"ui:widget": "range",
+	},
 	// boolean: {
 	// 	radio: {
 	// 		"ui:widget": "radio",
