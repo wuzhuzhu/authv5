@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "biomejs.biome",
+        "dsznajder.es7-react-js-snippets",
+        "github.copilot",
+        "diwanshumidha.nextboost-snippet",
+        "prisma.prisma",
+        "bradlc.vscode-tailwindcss"
+    ]
+}
