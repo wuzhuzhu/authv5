@@ -6,7 +6,9 @@
 	},
 	"editor.defaultFormatter": "biomejs.biome",
 	"javascript.preferences.importModuleSpecifier": "project-relative",
-	"cSpell.words": ["Signin"],
+	"cSpell.words": [
+		"Signin"
+	],
 	"files.exclude": {
 		"**/.git": true,
 		"**/.svn": true,
@@ -15,5 +17,14 @@
 		"**/.DS_Store": true,
 		"**/Thumbs.db": true,
 		"prisma/generated": true
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "biomejs.biome"
 	}
 }
