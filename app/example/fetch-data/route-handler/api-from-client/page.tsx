@@ -13,7 +13,7 @@ const ApiFromClientPage = () => {
 			.then((res) => res.json())
 			.then((res) => {
 				if (res?.code === 20000) {
-					setClouds(res?.data) as CloudsType;
+					setClouds(res.data) as CloudsType;
 				}
 			})
 			.finally(() => {
