@@ -12,6 +12,17 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
   **main**
   The main branch contains the production-ready source code. This branch contains thoroughly tested code deployed onto production。
 
+## Examples
+ **Data fetching**
+ See dev route: 
+- [x] [GET:服务端组件基本](http://localhost:3000/example/fetch-data/server/basic)
+- [x] [GET:服务端组件错误处理(实际上在examle层级实现error.tsx)](http://localhost:3000/example/fetch-data/server/error)
+- [ ] [GET:客户端组件](http://localhost:3000/example/fetch-data/server/error)
+- [x] [GET:客户端组件(使用Route Handler)](http://localhost:3000/example/fetch-data/route-handler/api-from-client)
+- [ ] [POST:Server Action](http://localhost:3000/example/mutate/server-action)
+- [ ] [POST:Server Action on Client](http://localhost:3000/example/mutate/server-action-on-client)
+- [ ] [POST:By Post route handler](http://localhost:3000/example/mutate/route-handler)
+
 
 ## NOTE:
 (Use vscode settings to exclude the files)
