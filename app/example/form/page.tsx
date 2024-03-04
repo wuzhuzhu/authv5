@@ -1,4 +1,4 @@
-import DynamicForm from "@/app/(protected)/example-form/components/form";
+import DynamicForm from "./components/form";
 
 const FormExamplePage = () => {
 	return (
