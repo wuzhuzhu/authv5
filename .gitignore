@@ -38,3 +38,6 @@ next-env.d.ts
 
 # generated schema
 /prisma/generated
+
+# bun lockfile
+bun.lockb
