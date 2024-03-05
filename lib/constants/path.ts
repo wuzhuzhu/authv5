@@ -3,6 +3,8 @@
  * @type {string[]}
  */
 
+import { SidebarNavItem } from "../types";
+
 export const publicRoutes = [
 	"/",
 	"/speed-test",
@@ -72,5 +74,35 @@ export const HEADER_LINKS: HeaderLink[] = [
 		title: "About",
 		href: "//about.example.com",
 		target: "_blank",
+	},
+];
+
+export const SIDEBAR_MENU: SidebarNavItem[] = [
+	{
+		title: "Playgound",
+		items: [
+			{
+				title: "Chat",
+				href: "/models/chat",
+			},
+			{
+				title: "Image",
+				href: "/models/image",
+			},
+		],
+	},
+	{
+		title: "Account",
+		items: [
+			{
+				title: "API keys",
+				href: "/keys",
+			},
+			{
+				title: "Billing",
+				href: "/billing",
+				disabled: true,
+			},
+		],
 	},
 ];
