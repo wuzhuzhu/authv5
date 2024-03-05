@@ -9,37 +9,37 @@ import TextWidget from "./widgets/TextWidget";
 import TextareaWidget from "./widgets/TextareaWidget";
 
 const MyCustomWidget = (props: WidgetProps) => {
-  return (
-    <div>
-      <h1>I'm here</h1>
-      <input
-        type="text"
-        className="custom"
-        value={props.value}
-        required={props.required}
-        onChange={(event) => props.onChange(event.target.value)}
-      />
-    </div>
-  );
+	return (
+		<div>
+			<h1>I'm here</h1>
+			<input
+				type="text"
+				className="custom"
+				value={props.value}
+				required={props.required}
+				onChange={(event) => props.onChange(event.target.value)}
+			/>
+		</div>
+	);
 };
 
 const customizedTemplates = {
-  BaseInputTemplate,
-  FieldTemplate,
-  ErrorListTemplate,
-  ButtonTemplates: {
-    SubmitButton,
-  },
+	BaseInputTemplate,
+	FieldTemplate,
+	ErrorListTemplate,
+	ButtonTemplates: {
+		SubmitButton,
+	},
 };
 
 const customizedWidget: RegistryWidgetsType = {
-  TextWidget,
-  TextareaWidget,
+	TextWidget,
+	TextareaWidget,
 };
 
 const theme: ThemeProps = {
-  templates: customizedTemplates,
-  widgets: customizedWidget,
+	templates: customizedTemplates,
+	widgets: customizedWidget,
 };
 
 const ThemedForm = withTheme(theme);
