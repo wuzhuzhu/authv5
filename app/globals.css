@@ -113,28 +113,41 @@ code {
   }
 }
 
+/* 
+base :  定义基础样式,如 resets、元素选择器样式等
+utilities: 定义公用工具类样式,如 padding、margin 等  公用样式,如颜色、间距等,
+components: 定义组件类样式,如按钮、卡片等可复用组件样式 [可以覆盖utilities定义的样式]
+elements: 定义元素样式,如链接样式、输入框样式等
+*/
+
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
+
 @layer utilities {
   .gradient-bg {
     @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500;
   }
+
   .lead {
     @apply text-xl text-muted-foreground;
   }
+
   .large {
     @apply text-lg font-semibold;
   }
+
   .small {
     @apply text-sm font-medium leading-none;
   }
+
   .muted {
     @apply text-sm text-muted-foreground;
   }

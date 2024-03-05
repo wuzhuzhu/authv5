@@ -1,7 +1,4 @@
-import { Button } from "@/components/ui/button";
-
 const SettingPage = async () => {
-  return <div>SettingPage Content</div>;
+  return <>SettingPage Content</>;
 };
-
 export default SettingPage;
