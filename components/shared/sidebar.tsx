@@ -14,10 +14,10 @@ export function SidebarNav({ items }: SidebarNavProps) {
 	const pathname = usePathname();
 
 	return items.length ? (
-		<div className="w-full">
+		<div className="w-[200px]">
 			{items.map((item, index) => (
 				<div key={index} className={cn("pb-8")}>
-					<h4 className="mb-1 rounded-md px-2 py-1 text-sm font-medium">
+					<h4 className="mb-1 rounded-md pr-2 py-1 text-sm font-bold">
 						{item.title}
 					</h4>
 					{item.items ? (

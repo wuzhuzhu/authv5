@@ -1,5 +1,6 @@
 import Header from "@/components/shared/header";
 import { SidebarNav } from "@/components/shared/sidebar";
+import { SIDEBAR_MENU } from "@/lib/constants/path";
 
 export default function ProtectedLayout({
 	children,
@@ -9,8 +10,8 @@ export default function ProtectedLayout({
 	return (
 		<div className="w-full min-h-full bg-background">
 			<Header />
-			<div className="flex w-[200px]">
-				<SidebarNav items={[{ title: "Playground" }]} />
+			<div className="flex px-8">
+				<SidebarNav items={SIDEBAR_MENU} />
 				{children}
 			</div>
 		</div>
