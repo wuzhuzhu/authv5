@@ -44,10 +44,6 @@ export type HeaderLink = {
 
 export const HEADER_LINKS: HeaderLink[] = [
 	{
-		title: "Home",
-		href: "/",
-	},
-	{
 		title: "Products",
 		subLinks: [
 			{
@@ -61,8 +57,20 @@ export const HEADER_LINKS: HeaderLink[] = [
 		],
 	},
 	{
-		title: "externalLink",
-		href: "https://google.com",
+		title: "Pricing",
+		href: "//pricing.example.com",
+	},
+	{
+		title: "Blog",
+		href: "//blog.example.com",
+	},
+	{
+		title: "Docs",
+		href: "//docs.example.com",
+	},
+	{
+		title: "About",
+		href: "//about.example.com",
 		target: "_blank",
 	},
 ];
