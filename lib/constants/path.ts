@@ -6,9 +6,9 @@
 export const publicRoutes = [
 	"/",
 	"/speed-test",
-	"/api/test",
-	"/api/test-edge",
-	"/api/test-cache",
+	"/api/example/test",
+	"/api/example/test-edge",
+	"/api/example/test-cache",
 ];
 
 /**
