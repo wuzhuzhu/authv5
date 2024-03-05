@@ -6,11 +6,11 @@ import { usePathname } from "next/navigation";
 import { SidebarNavItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-export interface DocsSidebarNavProps {
+export interface SidebarNavProps {
 	items: SidebarNavItem[];
 }
 
-export function DocsSidebarNav({ items }: DocsSidebarNavProps) {
+export function SidebarNav({ items }: SidebarNavProps) {
 	const pathname = usePathname();
 
 	return items.length ? (
@@ -21,7 +21,7 @@ export function DocsSidebarNav({ items }: DocsSidebarNavProps) {
 						{item.title}
 					</h4>
 					{item.items ? (
-						<DocsSidebarNavItems
+						<SidebarNavItems
 							items={item.items}
 							pathname={pathname}
 						/>
@@ -32,22 +32,18 @@ export function DocsSidebarNav({ items }: DocsSidebarNavProps) {
 	) : null;
 }
 
-interface DocsSidebarNavItemsProps {
+interface SidebarNavItemsProps {
 	items: SidebarNavItem[];
 	pathname: string | null;
 }
 
-export function DocsSidebarNavItems({
-	items,
-	pathname,
-}: DocsSidebarNavItemsProps) {
+export function SidebarNavItems({ items, pathname }: SidebarNavItemsProps) {
 	return items?.length ? (
 		<div className="grid grid-flow-row auto-rows-max text-sm">
 			{items.map((item, index) =>
 				!item.disabled && item.href ? (
 					<Link
-						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-						key={item.title + index}
+						key={item.title}
 						href={item.href}
 						className={cn(
 							"flex w-full items-center rounded-md p-2 hover:underline",
@@ -62,8 +58,7 @@ export function DocsSidebarNavItems({
 					</Link>
 				) : (
 					<span
-						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-						key={item.title + index}
+						key={index}
 						className="flex w-full cursor-not-allowed items-center rounded-md p-2 opacity-60"
 					>
 						{item.title}

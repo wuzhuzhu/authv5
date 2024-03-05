@@ -13,3 +13,8 @@ export type SidebarNavItem = {
 			items: NavLink[];
 	  }
 );
+
+export type SidebarNavItemGroup = {
+	title: string;
+	items: SidebarNavItem[];
+};
