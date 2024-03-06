@@ -14,7 +14,7 @@ export function SidebarNav({ items }: SidebarNavProps) {
 	const pathname = usePathname();
 
 	return items.length ? (
-		<div className="w-[200px] bg-accent pl-8 py-4">
+		<div className="w-full h-full bg-accent pl-8 py-4">
 			{items.map((item, index) => (
 				<div key={index} className={cn("pb-8")}>
 					<h4 className="mb-1 rounded-md pr-2 py-1 text-sm font-bold">
@@ -48,7 +48,7 @@ export function SidebarNavItems({ items, pathname }: SidebarNavItemsProps) {
 						className={cn(
 							"flex w-full items-center rounded-md p-2 hover:underline",
 							{
-								"bg-muted": pathname === item.href,
+								"bg-muted": pathname?.includes(item.href),
 							},
 						)}
 						target={item.external ? "_blank" : ""}
