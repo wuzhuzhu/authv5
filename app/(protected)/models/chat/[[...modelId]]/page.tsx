@@ -8,7 +8,7 @@ const ImageModelPage = async () => {
 				<h3>Conversation Here</h3>
 				<p>{JSON.stringify(data?.data)}</p>
 			</div>
-			<div className="basis-40 bg-accent p-4 pr-8">Form</div>
+			<div className="basis-60 bg-accent p-4 pr-8">Form</div>
 		</>
 	);
 };
