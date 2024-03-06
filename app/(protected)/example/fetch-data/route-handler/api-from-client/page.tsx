@@ -1,7 +1,7 @@
 "use client";
 
 import Clouds, { CloudsType } from "@/components/example/clouds";
-import PageLoading from "@/components/shared/page-loading";
+import PageLoading from "@/components/shared/loading/page-loading";
 import { Suspense, useEffect, useState } from "react";
 
 const ApiFromClientPage = () => {

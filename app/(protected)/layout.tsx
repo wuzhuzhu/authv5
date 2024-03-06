@@ -10,9 +10,12 @@ export default function ProtectedLayout({
 	return (
 		<div className="w-full min-h-full bg-background flex flex-col">
 			<Header />
-			<div className="flex gap-8 flex-1">
-				<SidebarNav items={SIDEBAR_MENU} />
-				{children}
+			<div className="flex gap-4 flex-1">
+				<div className="basis-48">
+					<SidebarNav items={SIDEBAR_MENU} />
+				</div>
+
+				<div className="flex-1">{children}</div>
 			</div>
 		</div>
 	);
