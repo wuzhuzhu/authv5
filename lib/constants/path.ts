@@ -80,6 +80,7 @@ export const HEADER_LINKS: HeaderLink[] = [
 export const SIDEBAR_MENU: SidebarNavItem[] = [
 	{
 		title: "Playgound",
+		description: "Temporary free",
 		items: [
 			{
 				title: "Chat",

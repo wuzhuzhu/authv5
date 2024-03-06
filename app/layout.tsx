@@ -16,7 +16,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={robotoFlex.className}>{children}</body>
+			<body className={cn(robotoFlex.className, "bg-secondary")}>
+				{children}
+			</body>
 			{/* responsive design dev tools */}
 			{/* <TailwindIndicator /> */}
 		</html>

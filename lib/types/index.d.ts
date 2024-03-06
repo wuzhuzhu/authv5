@@ -16,5 +16,6 @@ export type SidebarNavItem = {
 
 export type SidebarNavItemGroup = {
 	title: string;
+	description: string;
 	items: SidebarNavItem[];
 };

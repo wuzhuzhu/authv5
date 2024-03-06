@@ -6,7 +6,7 @@ import NavLinks from "./nav-link";
 
 const Header = () => {
 	return (
-		<div className="flex w-full bg-[var--background] h-[88px] items-center justify-between px-8">
+		<div className="flex w-full bg-[var--background] items-center justify-between px-6">
 			<div className="flex-1">
 				<Link href="/">
 					<p>SiliconFlow(LOGO)</p>
