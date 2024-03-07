@@ -4,7 +4,7 @@ const ChatModelPage = async () => {
 	const data = await getClouds(); // fake fetch
 	return (
 		<>
-			<form action="generate">
+			<form className="flex" action="generate">
 				<div className="flex-1 bg-accent p-4">
 					<h3>Conversation Here</h3>
 					<p>{JSON.stringify(data?.data)}</p>
