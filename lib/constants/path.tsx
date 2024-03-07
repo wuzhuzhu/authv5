@@ -3,6 +3,8 @@
  * @type {string[]}
  */
 
+import { BsChatDots } from "react-icons/bs";
+import { FaImage, FaKey, FaMoneyBill } from "react-icons/fa";
 import { SidebarNavItem } from "../types";
 
 export const publicRoutes = [
@@ -84,10 +86,12 @@ export const SIDEBAR_MENU: SidebarNavItem[] = [
 		items: [
 			{
 				title: "Chat",
+				icon: <BsChatDots />,
 				href: "/models/chat",
 			},
 			{
 				title: "Image",
+				icon: <FaImage />,
 				href: "/models/image",
 			},
 		],
@@ -97,10 +101,12 @@ export const SIDEBAR_MENU: SidebarNavItem[] = [
 		items: [
 			{
 				title: "API keys",
+				icon: <FaKey />,
 				href: "/keys",
 			},
 			{
 				title: "Billing",
+				icon: <FaMoneyBill />,
 				href: "/billing",
 				disabled: true,
 			},

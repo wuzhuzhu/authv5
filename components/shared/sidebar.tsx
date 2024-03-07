@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { SidebarNavItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import DarkLightToggle from "./dark-light-toggle";
+// import { BsChatDots } from "react-icons/bs";
 
 export interface SidebarNavProps {
 	items: SidebarNavItem[];
@@ -31,6 +32,11 @@ export function SidebarNav({ items }: SidebarNavProps) {
 								pathname={pathname}
 							/>
 						) : null}
+						{item.description && (
+							<span className="w-full text-right px-4 text-muted-foreground font-light">
+								{item.description}
+							</span>
+						)}
 					</div>
 				))}
 			</div>
@@ -60,15 +66,19 @@ export function SidebarNavItems({ items, pathname }: SidebarNavItemsProps) {
 						target={item.external ? "_blank" : ""}
 						rel={item.external ? "noreferrer" : ""}
 					>
-						{item.title}
+						<div className="flex gap-2 items-center">
+							{item?.icon}
+							{item.title}
+						</div>
 					</Link>
 				) : (
-					<span
+					<div
 						key={index}
-						className="flex w-full cursor-not-allowed items-center rounded-md p-2 opacity-60"
+						className="flex gap-2 w-full cursor-not-allowed items-center rounded-md p-2 opacity-60"
 					>
+						{item?.icon}
 						{item.title}
-					</span>
+					</div>
 				),
 			)}
 		</div>

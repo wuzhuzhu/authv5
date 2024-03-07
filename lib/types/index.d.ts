@@ -1,8 +1,9 @@
 export type SidebarNavItem = {
 	title: string;
+	description?: string;
 	disabled?: boolean;
 	external?: boolean;
-	icon?: keyof typeof Icons;
+	icon?: React.ReactNode;
 } & (
 	| {
 			href: string;
