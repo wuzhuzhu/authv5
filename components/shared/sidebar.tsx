@@ -16,7 +16,7 @@ export function SidebarNav({ items }: SidebarNavProps) {
 	const pathname = usePathname();
 
 	return items.length ? (
-		<div className="w-full h-full py-4 ml-2">
+		<div className="w-full h-full pb-4 ml-2">
 			<div className="w-full h-full pt-4 bg-white rounded-md flex-col justify-start items-start gap-4 inline-flex">
 				{items.map((item, index) => (
 					<div
