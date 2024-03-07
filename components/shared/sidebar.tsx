@@ -5,6 +5,8 @@ import { usePathname } from "next/navigation";
 
 import { SidebarNavItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import DarkLightToggle from "./dark-light-toggle";
+// import { BsChatDots } from "react-icons/bs";
 
 export interface SidebarNavProps {
 	items: SidebarNavItem[];
@@ -14,20 +16,30 @@ export function SidebarNav({ items }: SidebarNavProps) {
 	const pathname = usePathname();
 
 	return items.length ? (
-		<div className="w-full h-full bg-accent pl-8 py-4">
-			{items.map((item, index) => (
-				<div key={index} className={cn("pb-8")}>
-					<h4 className="mb-1 rounded-md pr-2 py-1 text-sm font-bold">
-						{item.title}
-					</h4>
-					{item.items ? (
-						<SidebarNavItems
-							items={item.items}
-							pathname={pathname}
-						/>
-					) : null}
-				</div>
-			))}
+		<div className="w-full h-full">
+			<div className="w-full h-full pt-4 bg-white rounded-md flex-col justify-start items-start gap-4 inline-flex">
+				{items.map((item, index) => (
+					<div
+						key={index}
+						className={cn("pb-8 w-full flex flex-col gap-2")}
+					>
+						<h4 className="text-gray-950 text-lg font-semibold font-['Roboto'] leading-7 mx-4">
+							{item.title}
+						</h4>
+						{item.items ? (
+							<SidebarNavItems
+								items={item.items}
+								pathname={pathname}
+							/>
+						) : null}
+						{item.description && (
+							<span className="w-full text-right px-4 text-muted-foreground font-light">
+								{item.description}
+							</span>
+						)}
+					</div>
+				))}
+			</div>
 		</div>
 	) : null;
 }
@@ -39,7 +51,7 @@ interface SidebarNavItemsProps {
 
 export function SidebarNavItems({ items, pathname }: SidebarNavItemsProps) {
 	return items?.length ? (
-		<div className="grid grid-flow-row auto-rows-max text-sm">
+		<div className="w-full px-3 py-2 grid grid-flow-row auto-rows-max text-sm">
 			{items.map((item, index) =>
 				!item.disabled && item.href ? (
 					<Link
@@ -54,15 +66,19 @@ export function SidebarNavItems({ items, pathname }: SidebarNavItemsProps) {
 						target={item.external ? "_blank" : ""}
 						rel={item.external ? "noreferrer" : ""}
 					>
-						{item.title}
+						<div className="flex gap-2 items-center">
+							{item?.icon}
+							{item.title}
+						</div>
 					</Link>
 				) : (
-					<span
+					<div
 						key={index}
-						className="flex w-full cursor-not-allowed items-center rounded-md p-2 opacity-60"
+						className="flex gap-2 w-full cursor-not-allowed items-center rounded-md p-2 opacity-60"
 					>
+						{item?.icon}
 						{item.title}
-					</span>
+					</div>
 				),
 			)}
 		</div>
