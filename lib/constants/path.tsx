@@ -8,7 +8,7 @@ import { FaImage, FaKey, FaMoneyBill } from "react-icons/fa";
 import { SidebarNavItem } from "../types";
 
 export const publicRoutes = [
-	"/",
+	// "/",
 	"/speed-test",
 	"/api/example/test",
 	"/api/example/test-edge",
@@ -36,7 +36,7 @@ export const apiAuthPrefix = "/api/auth";
 /**
  * the default login redirect path
  */
-export const DEFAULT_LOGIN_REDIRECT = "/settings";
+export const DEFAULT_LOGIN_REDIRECT = "/models/chat";
 export const LOGIN_ROUTE = "/auth/login";
 
 export type HeaderLink = {
