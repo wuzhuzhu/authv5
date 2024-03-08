@@ -1,21 +1,28 @@
-import React from "react";
+"use client";
+
+import DynamicForm from "@/app/(protected)/example/form/components/form";
+import { Button } from "@/components/ui/button";
+import { useRef } from "react";
 
 const ImagePageContent = ({ children }: { children: React.ReactNode }) => {
+	const formRef = useRef<HTMLFormElement>(null);
 	return (
 		<>
-			<form className="flex gap-2 h-full" action="generate">
+			<div className="flex gap-2 h-full">
 				{/* preview part as a children */}
 				<div className="flex flex-col justify-between flex-1 bg-white rounded-md p-6">
 					{children}
 					<div>
 						<p>prompt suggestions</p>
-						<p>prompt input here</p>
+						<Button onClick={() => formRef.current?.submit()}>
+							Click me
+						</Button>
 					</div>
 				</div>
 				<div className="basis-[320px] bg-white p-6 rounded-md">
-					Form
+					<DynamicForm formRef={formRef} />
 				</div>
-			</form>
+			</div>
 		</>
 	);
 };
