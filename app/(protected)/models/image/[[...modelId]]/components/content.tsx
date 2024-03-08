@@ -15,7 +15,7 @@ const ImagePageContent = ({ children }: { children: React.ReactNode }) => {
 					<div>
 						<p>prompt suggestions</p>
 						<Button onClick={() => formRef.current?.submit()}>
-							Click me
+							Click me 1
 						</Button>
 					</div>
 				</div>
