@@ -14,6 +14,6 @@ export async function GET(request: Request) {
 			// headers: headers(), // forward headers from client to backend. !!使用headers会强制退出缓存!!
 		},
 	);
-	const data = await res.json();
+	const data = await res?.json();
 	return Response.json(data);
 }
