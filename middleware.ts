@@ -6,9 +6,9 @@ import {
 	authRoutes,
 	publicRoutes,
 } from "@/lib/constants/path";
-import NextAuth, { Session } from "next-auth";
+import NextAuth, { type Session } from "next-auth";
 import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 export interface NextAuthRequest extends NextRequest {
 	auth: Session | null;
 }
@@ -29,7 +29,9 @@ export default auth(
 		if (isApiAuthRoute) return response;
 		if (isAuthRoute) {
 			if (isLoggedIn)
-				return NextResponse.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+				return NextResponse.redirect(
+					new URL(DEFAULT_LOGIN_REDIRECT, nextUrl),
+				);
 			return response;
 		}
 		if (!isLoggedIn && !isPublicRoute)
@@ -44,7 +46,7 @@ export default auth(
 // Optionally, don't invoke Middleware on some paths
 export const config = {
 	// from authjs docs:
-	// matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+	matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 	// from clerk: https://clerk.com/docs/quickstarts/nextjs?utm_source=sponsorship&utm_medium=youtube&utm_campaign=code-with-antonio&utm_content=12-31-2023#add-authentication-to-your-app
-	matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+	// matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
