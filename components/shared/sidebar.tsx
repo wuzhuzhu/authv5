@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { SidebarNavItem } from "@/lib/types";
+import type { SidebarNavItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import DarkLightToggle from "./dark-light-toggle";
 // import { BsChatDots } from "react-icons/bs";
@@ -32,7 +32,7 @@ export function SidebarNav({ items }: SidebarNavProps) {
 						/>
 					) : null}
 					{item.description && (
-						<span className="w-full text-right px-4 text-muted-foreground font-light">
+						<span className="w-full text-right text-sm px-4 text-muted-foreground font-light">
 							{item.description}
 						</span>
 					)}

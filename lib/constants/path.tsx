@@ -4,11 +4,11 @@
  */
 
 import { BsChatDots } from "react-icons/bs";
-import { FaImage, FaKey, FaMoneyBill } from "react-icons/fa";
+import { FaImage, FaImages, FaKey, FaMoneyBill } from "react-icons/fa";
 import type { SidebarNavItem } from "../types";
 
 export const publicRoutes = [
-	"/",
+	// "/",
 	"/speed-test",
 	"/api/example/test",
 	"/api/example/test-edge",
@@ -90,9 +90,14 @@ export const SIDEBAR_MENU: SidebarNavItem[] = [
 				href: "/models/chat",
 			},
 			{
-				title: "Image",
+				title: "Text To Image",
 				icon: <FaImage />,
-				href: "/models/image",
+				href: "/models/image/text-to-image",
+			},
+			{
+				title: "Image To Image",
+				icon: <FaImages />,
+				href: "/models/image/image-to-image",
 			},
 		],
 	},
