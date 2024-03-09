@@ -1,7 +1,9 @@
 import { getClouds } from "@/lib/data/example";
+import { fetchFromServer } from "@/lib/fetch-from-server";
+import { headers } from "next/headers";
 
 const APIKeysPage = async () => {
-	const data = await getClouds(); // fake fetch
+	const data = await fetchFromServer("http://localhost:3001/api/dinasour");
 	return (
 		<div className="grid gap-4">
 			<h3>APIKeysPage</h3>

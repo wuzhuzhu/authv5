@@ -2,11 +2,13 @@ import Clouds from "@/components/example/clouds";
 import { fetchFromServer } from "@/lib/fetch-from-server";
 
 const Page = async () => {
-	const data = await fetchFromServer("/api/v1/playground/cloud");
+	const data = await fetchFromServer("https://dummyjson.com/products/1");
+	// const json = await data.json();
 	return (
 		<div>
 			{/* {JSON.stringify(data?.data)} */}
-			<Clouds clouds={data?.data} />
+			<h1>3rd party</h1>
+			<p>{JSON.stringify(data)}</p>
 		</div>
 	);
 };

@@ -1,7 +1,8 @@
 "use client";
 
-import Clouds, { CloudsType } from "@/components/example/clouds";
+import Clouds, { type CloudsType } from "@/components/example/clouds";
 import PageLoading from "@/components/shared/loading/page-loading";
+import { fetchFromClient } from "@/lib/fetch-from-client";
 import { Suspense, useEffect, useState } from "react";
 
 const ApiFromClientPage = () => {
@@ -9,12 +10,10 @@ const ApiFromClientPage = () => {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		fetch("/api/example/cloud")
-			.then((res) => res.json())
+		fetchFromClient("/api/example/cloud")
 			.then((res) => {
-				if (res?.code === 20000) {
-					setClouds(res.data) as CloudsType;
-				}
+				console.log(res);
+				setClouds(res?.data);
 			})
 			.finally(() => {
 				setIsLoading(false);
