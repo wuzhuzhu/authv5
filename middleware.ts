@@ -25,13 +25,16 @@ export default auth(
 		// const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
 
 		const isAPIRoute = nextUrl.pathname.startsWith("/api");
-		if (isAPIRoute) return response; // 限制/api后,应取消这个注释
+
+		// if (isAPIRoute) {
+		// 	console.log("[FROM Middleware]API Route:", req.auth);
+		// } // 可见auth信息
 
 		const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
 		const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 		const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
 
-		// if (isApiAuthRoute) return response; // 限制/api后,应取消这个注释
+		if (isApiAuthRoute) return response; // 限制/api后,应取消这个注释
 
 		if (isAuthRoute) {
 			if (isLoggedIn)
