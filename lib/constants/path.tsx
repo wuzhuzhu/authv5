@@ -3,12 +3,16 @@
  * @type {string[]}
  */
 
+import { BsChatDots } from "react-icons/bs";
+import { FaImage, FaKey, FaMoneyBill } from "react-icons/fa";
+import { SidebarNavItem } from "../types";
+
 export const publicRoutes = [
 	"/",
 	"/speed-test",
-	"/api/test",
-	"/api/test-edge",
-	"/api/test-cache",
+	"/api/example/test",
+	"/api/example/test-edge",
+	"/api/example/test-cache",
 ];
 
 /**
@@ -44,10 +48,6 @@ export type HeaderLink = {
 
 export const HEADER_LINKS: HeaderLink[] = [
 	{
-		title: "Home",
-		href: "/",
-	},
-	{
 		title: "Products",
 		subLinks: [
 			{
@@ -61,8 +61,55 @@ export const HEADER_LINKS: HeaderLink[] = [
 		],
 	},
 	{
-		title: "externalLink",
-		href: "https://google.com",
+		title: "Pricing",
+		href: "//pricing.example.com",
+	},
+	{
+		title: "Blog",
+		href: "//blog.example.com",
+	},
+	{
+		title: "Docs",
+		href: "//docs.example.com",
+	},
+	{
+		title: "About",
+		href: "//about.example.com",
 		target: "_blank",
+	},
+];
+
+export const SIDEBAR_MENU: SidebarNavItem[] = [
+	{
+		title: "Playgound",
+		description: "Temporary Free",
+		items: [
+			{
+				title: "Chat",
+				icon: <BsChatDots />,
+				href: "/models/chat",
+			},
+			{
+				title: "Image",
+				icon: <FaImage />,
+				href: "/models/image",
+			},
+		],
+	},
+	{
+		title: "Account",
+		items: [
+			{
+				title: "API keys",
+				icon: <FaKey />,
+				href: "/keys",
+			},
+			{
+				title: "Billing",
+				icon: <FaMoneyBill />,
+				href: "/billing",
+				disabled: true,
+			},
+		],
 	},
 ];

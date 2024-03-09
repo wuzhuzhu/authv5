@@ -1,7 +1,7 @@
 "use client";
 
 import Clouds, { CloudsType } from "@/components/example/clouds";
-import PageLoading from "@/components/shared/page-loading";
+import PageLoading from "@/components/shared/loading/page-loading";
 import { Suspense, useEffect, useState } from "react";
 
 const ApiFromClientPage = () => {
@@ -13,7 +13,7 @@ const ApiFromClientPage = () => {
 			.then((res) => res.json())
 			.then((res) => {
 				if (res?.code === 20000) {
-					setClouds(res?.data) as CloudsType;
+					setClouds(res.data) as CloudsType;
 				}
 			})
 			.finally(() => {

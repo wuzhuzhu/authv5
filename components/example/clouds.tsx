@@ -8,12 +8,12 @@ const cloudsExample = {
 	LLM: [{ id: 28, name: "llama2-70b", type: "LLM" }],
 };
 
-type CloudsType = typeof cloudsExample;
+export type CloudsType = typeof cloudsExample | undefined;
 
 const Clouds = ({ clouds }: { clouds: CloudsType }) => {
 	return (
 		<div>
-			{clouds.Image?.map((image, index) => (
+			{clouds?.Image?.map((image, index) => (
 				<ul className="grid" key={image.id}>
 					<li>
 						{image.name}/ {image.type}
@@ -21,7 +21,7 @@ const Clouds = ({ clouds }: { clouds: CloudsType }) => {
 				</ul>
 			))}
 			<hr />
-			{clouds.LLM?.map((image, index) => (
+			{clouds?.LLM?.map((image, index) => (
 				<ul className="grid" key={image.id}>
 					<li>
 						{image.name}/ {image.type}

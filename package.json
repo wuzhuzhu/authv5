@@ -12,8 +12,8 @@
 		"lint": "next lint",
 		"format:check": "biome check . && eslint .",
 		"format": "biome check --apply-unsafe . && eslint --fix .",
-		"db:reset": "bunx prisma migrate reset",
-		"db:push": "bunx prisma db push",
+		"DANGEROUS:db:reset": "bunx prisma migrate reset",
+		"DANGEROUS:db:push": "bunx prisma db push",
 		"rm-zod-schema": "rm -rf ./prisma/generated",
 		"postinstall": "prisma generate"
 	},
