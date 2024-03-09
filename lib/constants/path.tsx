@@ -5,10 +5,10 @@
 
 import { BsChatDots } from "react-icons/bs";
 import { FaImage, FaKey, FaMoneyBill } from "react-icons/fa";
-import { SidebarNavItem } from "../types";
+import type { SidebarNavItem } from "../types";
 
 export const publicRoutes = [
-	// "/",
+	"/",
 	"/speed-test",
 	"/api/example/test",
 	"/api/example/test-edge",
