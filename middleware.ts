@@ -6,9 +6,9 @@ import {
 	authRoutes,
 	publicRoutes,
 } from "@/lib/constants/path";
-import NextAuth, { Session } from "next-auth";
+import NextAuth, { type Session } from "next-auth";
 import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 export interface NextAuthRequest extends NextRequest {
 	auth: Session | null;
 }
@@ -22,18 +22,37 @@ export default auth(
 		// console.log("[FROM Middleware]Route:", nextUrl.pathname);
 		const isLoggedIn = !!req.auth;
 
-		const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+		// const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+
+		const isAPIRoute = nextUrl.pathname.startsWith("/api");
+
+		// if (isAPIRoute) {
+		// 	console.log("[FROM Middleware]API Route:", req.auth);
+		// } // 可见auth信息
+
 		const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
 		const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+		const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
 
-		if (isApiAuthRoute) return response;
+		if (isApiAuthRoute) return response; // 限制/api后,应取消这个注释
+
 		if (isAuthRoute) {
 			if (isLoggedIn)
-				return NextResponse.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+				return NextResponse.redirect(
+					new URL(DEFAULT_LOGIN_REDIRECT, nextUrl),
+				);
 			return response;
 		}
-		if (!isLoggedIn && !isPublicRoute)
+		if (!isLoggedIn && !isPublicRoute) {
+			// if is api route instead of page route, return a 401 status code
+			if (isAPIRoute) {
+				return NextResponse.json(
+					{ error: "Not Log in." },
+					{ status: 401 },
+				);
+			}
 			return NextResponse.redirect(new URL(LOGIN_ROUTE, nextUrl));
+		}
 
 		return response;
 
