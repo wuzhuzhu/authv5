@@ -2,11 +2,11 @@ import { LOGIN_ROUTE } from "@/lib/constants/path";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic"; // for testing
 
 async function getData() {
 	// 服务端组件发出请求,默认不带cookie,会导致中间件返回401; 需要手动添加header以附带cookie
-	const res = await fetch("http://localhost:3000/api/todo", {
+	const res = await fetch("http://localhost:3000/api/example/todo", {
 		headers: headers(),
 	});
 	// The return value is *not* serialized
