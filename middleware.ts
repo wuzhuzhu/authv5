@@ -25,12 +25,12 @@ export default auth(
 		// const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
 
 		const isAPIRoute = nextUrl.pathname.startsWith("/api");
+		if (isAPIRoute) return response; // 限制/api后,应取消这个注释
 
 		const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
 		const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 		const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
 
-		if (isAPIRoute) return response;
 		// if (isApiAuthRoute) return response; // 限制/api后,应取消这个注释
 
 		if (isAuthRoute) {
@@ -40,8 +40,16 @@ export default auth(
 				);
 			return response;
 		}
-		if (!isLoggedIn && !isPublicRoute)
+		if (!isLoggedIn && !isPublicRoute) {
+			// if is api route instead of page route, return a 401 status code
+			if (isAPIRoute) {
+				return NextResponse.json(
+					{ error: "Not Log in." },
+					{ status: 401 },
+				);
+			}
 			return NextResponse.redirect(new URL(LOGIN_ROUTE, nextUrl));
+		}
 
 		return response;
 
