@@ -13,16 +13,13 @@ const transporter = nodemailer.createTransport({
 
 // await transporter.sendMail(options);
 
-export const sendVerificationEmail = async (
-  to: string,
-  token: string
-) => {
-  const confirmationLink = `${process.env.DOMAIN}/auth/verify-email?token=${token}&email=${to}`;
-  const options = {
-    from: process.env.EMAIL_FROM,
-    to,
-    subject: `${process.env.SITE_NAME}: Verify your email address`,
-    html: `<p>Click <a href="${confirmationLink}">Here</a> to confirm email</p>`,
-  };
-  await transporter.sendMail(options);
+export const sendVerificationEmail = async (to: string, token: string) => {
+	const confirmationLink = `${process.env.NEXT_PUBLIC_DOMAIN}/auth/verify-email?token=${token}&email=${to}`;
+	const options = {
+		from: process.env.EMAIL_FROM,
+		to,
+		subject: `${process.env.SITE_NAME}: Verify your email address`,
+		html: `<p>Click <a href="${confirmationLink}">Here</a> to confirm email</p>`,
+	};
+	await transporter.sendMail(options);
 };
