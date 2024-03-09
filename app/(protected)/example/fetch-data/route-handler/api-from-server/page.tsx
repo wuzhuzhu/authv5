@@ -35,7 +35,9 @@ const Page = async () => {
 	const data = await getData();
 	return (
 		<div>
-			<h1 className="text-2xl">绝了啊</h1>
+			<h1 className="text-2xl">
+				服务端发请求务必记得带header,否则中间件会拦截未登录api
+			</h1>
 			{JSON.stringify(data)}
 			{/* <Clouds clouds={data?.data} /> */}
 		</div>
