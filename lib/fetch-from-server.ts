@@ -26,6 +26,7 @@ export async function fetchFromServer(
 		const options = forwardHeaders ? { ...init, headers: headers() } : init;
 		// 服务端发起请求,需要手动带上header
 		const response = await fetch(url, options);
+		console.log('response on fetchFromServer', response.status, response.statusText, response.headers.get('set-cookie'));
 
 		switch (response.status) {
 			case 401:
