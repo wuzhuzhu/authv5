@@ -20,3 +20,17 @@ export type SidebarNavItemGroup = {
 	description: string;
 	items: SidebarNavItem[];
 };
+
+export interface Pagination {
+	current: string | number;
+	pageSize: number;
+	total?: number;
+}
+
+export interface ApiKey {
+	id: string;
+	secretKey: string;
+	createdAt: {
+		seconds: number;
+	};
+}

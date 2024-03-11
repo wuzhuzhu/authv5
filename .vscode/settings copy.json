@@ -1,5 +1,6 @@
 {
 	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit",
 		"source.organizeImports.biome": "explicit",
 		"quickfix.biome": "explicit"
 	},
@@ -17,4 +18,13 @@
 		"**/Thumbs.db": true,
 		"prisma/generated": true
 	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	}
 }
