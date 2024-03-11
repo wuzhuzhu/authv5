@@ -1,8 +1,16 @@
+import SuggestionsSkeloton from "@/components/shared/loading/skelotons/component-loading";
 import PromptSuggestions from "@/components/shared/models/prompt-suggestions";
 import { getClouds } from "@/lib/data/example";
+import type { ModelSubType } from "@/lib/types";
+import { Suspense } from "react";
 import ImagePageContent from "./components/content";
 
-const ImageModelPage = async ({ params }: {}) => {
+const ImageModelPage = async ({
+	params,
+}: {
+	modelSubType: ModelSubType;
+	modelId: string[];
+}) => {
 	const data = await getClouds(); // fake fetch
 	return (
 		<ImagePageContent>
@@ -14,7 +22,13 @@ const ImageModelPage = async ({ params }: {}) => {
 				</h3>
 				<p>{JSON.stringify(data?.data)}</p>
 			</div>
-			<PromptSuggestions modelType="LLM" modelSubType="chat" />
+
+			<Suspense fallback={<SuggestionsSkeloton />}>
+				<PromptSuggestions
+					modelType="image" // 当前路由锁死为image
+					modelSubType={params.modelSubType}
+				/>
+			</Suspense>
 		</ImagePageContent>
 	);
 };

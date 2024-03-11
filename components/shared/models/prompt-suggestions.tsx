@@ -1,5 +1,6 @@
 import { fetchFromServer } from "@/lib/fetch-from-server";
 import type { ModelSubType, ModelType, PromptSuggestion } from "@/lib/types";
+import { sleep } from "@/lib/utils";
 
 interface PromptSuggestionsProps {
 	modelType: ModelType;
@@ -10,6 +11,8 @@ const PromptSuggestions = async ({
 	modelType,
 	modelSubType,
 }: PromptSuggestionsProps) => {
+	// TODO: remove this sleep
+	await sleep(1000);
 	const suggestionJson = await fetchFromServer(
 		"http://192.168.1.102:8003/api/v1/playground/prompt_suggestion?type=LLM&sub_type=chat",
 	);
