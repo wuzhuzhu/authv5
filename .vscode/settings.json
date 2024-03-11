@@ -17,4 +17,7 @@
 		"**/Thumbs.db": true,
 		"prisma/generated": true
 	},
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
 }

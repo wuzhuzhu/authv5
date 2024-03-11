@@ -1,3 +1,4 @@
+// Layout Module
 export type SidebarNavItem = {
 	title: string;
 	description?: string;
@@ -27,10 +28,30 @@ export interface Pagination {
 	total?: number;
 }
 
+// Api Key module
 export interface ApiKey {
 	id: string;
 	secretKey: string;
 	createdAt: {
 		seconds: number;
 	};
+}
+
+// Model module
+export enum ModelType {
+	image = "image",
+	text = "text",
+}
+
+export enum ModelSubType {
+	"text-to-image" = "text-to-image",
+	"image-to-image" = "image-to-image",
+	chat = "chat",
+	code = "code",
+	language = "language",
+}
+
+export interface PromptSuggestion {
+	prompt: string;
+	image_url: string;
 }

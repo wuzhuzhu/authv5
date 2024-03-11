@@ -2,7 +2,7 @@ import PromptSuggestions from "@/components/shared/models/prompt-suggestions";
 import { getClouds } from "@/lib/data/example";
 import ImagePageContent from "./components/content";
 
-const ImageModelPage = async () => {
+const ImageModelPage = async ({ params }: {}) => {
 	const data = await getClouds(); // fake fetch
 	return (
 		<ImagePageContent>
@@ -14,6 +14,7 @@ const ImageModelPage = async () => {
 				</h3>
 				<p>{JSON.stringify(data?.data)}</p>
 			</div>
+			<PromptSuggestions modelType="LLM" modelSubType="chat" />
 		</ImagePageContent>
 	);
 };

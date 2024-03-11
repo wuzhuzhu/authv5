@@ -87,7 +87,7 @@ export const SIDEBAR_MENU: SidebarNavItem[] = [
 			{
 				title: "Chat",
 				icon: <BsChatDots />,
-				href: "/models/chat",
+				href: "/models/text/chat",
 			},
 			{
 				title: "Text To Image",

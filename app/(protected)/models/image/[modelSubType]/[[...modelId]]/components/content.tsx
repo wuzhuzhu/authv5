@@ -1,6 +1,7 @@
 "use client";
 
 import DynamicForm from "@/app/(protected)/example/form/components/form";
+import PromptSuggestions from "@/components/shared/models/prompt-suggestions";
 import { Button } from "@/components/ui/button";
 import { useRef } from "react";
 
@@ -13,7 +14,6 @@ const ImagePageContent = ({ children }: { children: React.ReactNode }) => {
 				<div className="flex flex-col justify-between flex-1 bg-white rounded-md p-6">
 					{children}
 					<div>
-						<p>prompt suggestions</p>
 						<Button onClick={() => formRef.current?.submit()}>
 							Click me 1
 						</Button>
