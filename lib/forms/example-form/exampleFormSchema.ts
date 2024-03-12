@@ -1,47 +1,99 @@
-import { JSONSchema7 } from "json-schema";
+import type { JSONSchema7 } from "json-schema";
 
 export const exampleFormSchema: JSONSchema7 = {
-	title: "Widgets",
+	title: "table Diffusion XL",
+	description: "Stable Diffusion XL(看不见)",
 	type: "object",
+	required: [
+		"imageSize",
+		"batchSize",
+		"seed",
+		"numInferenceSteps",
+		"guidanceScale",
+		// "nagativePrompt",
+		"denoise",
+	],
+	// definitions: {
+	// 	// 单独为所有enum of object做定义, 在下面使用$ref引用,注意默认值是对象
+	// 	locations: {
+	// 		enumNames: ["New York", "Amsterdam", "Hong Kong"],
+	// 		enum: [
+	// 			{
+	// 				name: "New York",
+	// 				lat: 40,
+	// 				lon: 74,
+	// 			},
+	// 			{
+	// 				name: "Amsterdam",
+	// 				lat: 52,
+	// 				lon: 5,
+	// 			},
+	// 			{
+	// 				name: "Hong Kong",
+	// 				lat: 22,
+	// 				lon: 114,
+	// 			},
+	// 		],
+	// 	},
+	// },
 	properties: {
-		notExist: {
-			title: "示例字符串输入",
+		// locations: {
+		// 	// https://rjsf-team.github.io/react-jsonschema-form/ , 点击Enumerated objects
+		// 	title: "Location示例",
+		// 	$ref: "#/definitions/locations",
+		// 	default: {
+		// 		name: "New York",
+		// 		lat: 40,
+		// 		lon: 74,
+		// 	},
+		// },
+		imageSize: {
+			title: "Image Size",
 			type: "string",
-			default: "Not Exist",
-			minLength: 10,
+			enum: ["1:1", "1:2", "3:2", "3:4", "16:9", "9:16"],
+			default: "1:1",
 		},
-		model: {
-			title: "Model",
-			type: "string",
-			enum: ["llama2-70b", "gpt-3.5"],
-			default: "llama2-70b",
-		},
-		maxTokens: {
-			title: "Max Tokens",
+		batchSize: {
+			title: "Number Images",
 			type: "integer",
 			minimum: 1,
-			maximum: 2048,
-			default: 512,
+			maximum: 4,
+			default: 1,
 		},
-		temperature: {
-			title: "Temperature",
+		seed: {
+			title: "Seed",
+			type: "integer",
+			minimum: 0,
+			maximum: Number.MAX_SAFE_INTEGER,
+			// maximum: ,
+		},
+		numInferenceSteps: {
+			title: "Number Inference Steps",
+			type: "integer",
+			minimum: 1,
+			maximum: 50,
+			default: 25,
+		},
+		guidanceScale: {
+			title: "Guidance Scale",
 			type: "number",
 			minimum: 0,
-			maximum: 5,
-			default: 0.75,
+			maximum: 20,
+			default: 7.5,
 		},
-		topP: {
-			title: "Top P",
-			type: "number",
-			minimum: 0,
-			maximum: 1,
-			default: 0.8,
-		},
-		prompt: {
-			title: "Prompt",
+		nagativePrompt: {
+			title: "Nagative Prompt",
 			type: "string",
-			default: "Help me write a love poem",
-			description: "Prompt for completion",
+		},
+		image: {
+			title: "Upload Image",
+			type: "string",
+			format: "data-url",
+		},
+		denoice: {
+			title: "Denoice",
+			type: "number",
+			default: 0.6,
 		},
 	},
 };
