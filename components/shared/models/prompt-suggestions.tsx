@@ -8,7 +8,7 @@ import {
 import { PROMPT_SUGGESTION_LIMIT_IMG } from "@/lib/constants/config";
 import { fetchFromServer } from "@/lib/fetch-from-server";
 import type { ModelSubType, ModelType, PromptSuggestion } from "@/lib/types";
-import { getSomeRandomPromptSuggestions, sleep } from "@/lib/utils";
+import { cn, getSomeRandomPromptSuggestions, sleep } from "@/lib/utils";
 
 interface PromptSuggestionsProps {
 	modelType: ModelType;
@@ -27,11 +27,18 @@ const PromptSuggestions = async ({
 		false, // 非登录接口,无需带cookie,有缓存
 	);
 	const suggestions = suggestionJson?.data?.suggestions || [];
-	const randomSuggestions = getSomeRandomPromptSuggestions(suggestions, 4);
+	const randomSuggestions = getSomeRandomPromptSuggestions(
+		suggestions,
+		PROMPT_SUGGESTION_LIMIT_IMG,
+	);
 	return (
 		<>
 			{randomSuggestions.length > 0 && (
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+				<div
+					className={cn("grid grid-cols-1 gap-2", {
+						"md:grid-cols-2": randomSuggestions.length > 1,
+					})}
+				>
 					{randomSuggestions.map(
 						(suggestion: PromptSuggestion, i: number) => (
 							// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>

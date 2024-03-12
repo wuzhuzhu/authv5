@@ -5,4 +5,4 @@ export const DEFAULT_AVATAR_URL = "/";
 export const PAGE_SIZE = 10;
 
 export const PROMPT_SUGGESTION_LIMIT_TEXT = 4;
-export const PROMPT_SUGGESTION_LIMIT_IMG = 2;
+export const PROMPT_SUGGESTION_LIMIT_IMG = 1;
