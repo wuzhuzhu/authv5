@@ -1,5 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { number } from "zod";
+import type { PromptSuggestion } from "./types";
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -26,3 +28,23 @@ export const getErrorMessage = (error: unknown): string => {
 
 	return message;
 };
+
+export function tsObjectToJsonObject(obj: object) {
+	console.log(JSON.parse(JSON.stringify(obj)));
+	return JSON.parse(JSON.stringify(obj));
+}
+
+export function getSomeRandomPromptSuggestions(
+	suggestions: PromptSuggestion[],
+	count: number,
+) {
+	if (count <= 0) {
+		return [];
+	}
+	if (count >= suggestions.length) {
+		return suggestions;
+	}
+	const randomSuggestions = suggestions.sort(() => 0.5 - Math.random());
+
+	return randomSuggestions.slice(0, count);
+}
