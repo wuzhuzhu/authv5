@@ -14,7 +14,9 @@ const PromptSuggestions = async ({
 	// TODO: remove this sleep
 	await sleep(1000);
 	const suggestionJson = await fetchFromServer(
-		"http://192.168.1.102:8003/api/v1/playground/prompt_suggestion?type=LLM&sub_type=chat",
+		`/api/v1/playground/prompt_suggestion?type=${modelType}&sub_type=${modelSubType}`,
+		{},
+		false, // 非登录接口,无需带cookie,有缓存
 	);
 	const suggestions = suggestionJson?.data?.suggestions || [];
 	return (
