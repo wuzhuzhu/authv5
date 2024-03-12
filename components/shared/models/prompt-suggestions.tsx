@@ -27,28 +27,23 @@ const PromptSuggestions = async ({
 		false, // 非登录接口,无需带cookie,有缓存
 	);
 	const suggestions = suggestionJson?.data?.suggestions || [];
-	const randomSuggestions = getSomeRandomPromptSuggestions(suggestions, 1);
+	const randomSuggestions = getSomeRandomPromptSuggestions(suggestions, 4);
 	return (
 		<>
 			{randomSuggestions.length > 0 && (
-				<div>
-					<div className="flex flex-wrap -mx-2">
-						{randomSuggestions.map(
-							(suggestion: PromptSuggestion, i: number) => (
-								// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-								<div
-									key={`suggestion-${i}`}
-									className="w-full md:w-1/2 px-2 mb-2"
-								>
-									<Card>
-										<p className="p-4 text-sm text-muted-foreground">
-											Card Content
-										</p>
-									</Card>
-								</div>
-							),
-						)}
-					</div>
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+					{randomSuggestions.map(
+						(suggestion: PromptSuggestion, i: number) => (
+							// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+							<div key={`suggestion-${i}`} className="w-full">
+								<Card>
+									<p className="p-4 text-sm text-muted-foreground truncate">
+										{suggestion.prompt}
+									</p>
+								</Card>
+							</div>
+						),
+					)}
 				</div>
 			)}
 		</>

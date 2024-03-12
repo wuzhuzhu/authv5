@@ -13,7 +13,7 @@ const ImagePageContent = ({ children }: { children: React.ReactNode }) => {
 		<>
 			<div className="flex gap-2 h-full">
 				{/* preview part as a children */}
-				<div className="flex flex-col gap-8  flex-1 bg-white rounded-md px-6 py-4 overflow-hidden">
+				<div className="flex flex-col gap-4  flex-1 bg-white rounded-md px-6 py-4 overflow-hidden">
 					<div className="flex flex-col justify-between flex-1 overflow-y-scroll">
 						{children}
 					</div>
