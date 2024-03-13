@@ -1,4 +1,5 @@
 import type { UiSchema } from "@rjsf/utils";
+import type { SetStateAction } from "react"; // useState action def
 
 // Layout Module
 export type SidebarNavItem = {

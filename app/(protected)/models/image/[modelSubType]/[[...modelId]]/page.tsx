@@ -10,6 +10,7 @@ import { fetchFromServer } from "@/lib/fetch-from-server";
 import sdXlLightingCombinedSchema from "@/lib/forms/example-form/i2i/sd-xl-lightning";
 import type { ModelCombinedSchema, ModelSubType } from "@/lib/types";
 import type { Model } from "@/lib/types";
+import { getSomeRandomPromptSuggestions } from "@/lib/utils";
 import { Suspense } from "react";
 import { useRef } from "react";
 import ImagePageContent from "./components/content";
@@ -31,19 +32,20 @@ const ImageModelPage = async ({
 		await fetchFromServer(
 			`/api/v1/playground?type=image&sub_type=${params.modelSubType}`,
 		);
+	const suggestionJson = await fetchFromServer(
+		`/api/v1/playground/prompt_suggestion?type=image&sub_type=${params.modelSubType}`,
+		{},
+		false, // 非登录接口,无需带cookie,有缓存
+	);
+	const suggestions = suggestionJson?.data?.suggestions || [];
+	const randomSuggestions = getSomeRandomPromptSuggestions(
+		suggestions,
+		PROMPT_SUGGESTION_LIMIT_IMG,
+	);
 	return (
 		<div className="flex gap-2 h-full">
 			{/* preview part as a children */}
-			<ImagePageContent
-				models={models}
-				combinedFormSchema={default_schema}
-				modelSubType={params.modelSubType}
-			>
-				<PromptSuggestions
-					modelType="image"
-					modelSubType={params.modelSubType}
-				/>
-			</ImagePageContent>
+			<ImagePageContent suggestions={randomSuggestions} />
 		</div>
 	);
 };

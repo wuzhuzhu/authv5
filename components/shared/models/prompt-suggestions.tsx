@@ -1,3 +1,5 @@
+"use client";
+
 import {
 	Card,
 	CardContent,
@@ -11,38 +13,30 @@ import type { ModelSubType, ModelType, PromptSuggestion } from "@/lib/types";
 import { cn, getSomeRandomPromptSuggestions, sleep } from "@/lib/utils";
 
 interface PromptSuggestionsProps {
-	modelType: ModelType;
-	modelSubType: ModelSubType;
+	suggestions: PromptSuggestion[];
+	setPrompt: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const PromptSuggestions = async ({
-	modelType,
-	modelSubType,
+const PromptSuggestions = ({
+	suggestions,
+	setPrompt,
 }: PromptSuggestionsProps) => {
-	// TODO: remove this sleep
-	await sleep(1000);
-	const suggestionJson = await fetchFromServer(
-		`/api/v1/playground/prompt_suggestion?type=${modelType}&sub_type=${modelSubType}`,
-		{},
-		false, // 非登录接口,无需带cookie,有缓存
-	);
-	const suggestions = suggestionJson?.data?.suggestions || [];
-	const randomSuggestions = getSomeRandomPromptSuggestions(
-		suggestions,
-		PROMPT_SUGGESTION_LIMIT_IMG,
-	);
 	return (
 		<>
-			{randomSuggestions.length > 0 && (
+			{suggestions.length > 0 && (
 				<div
 					className={cn("grid grid-cols-1 gap-2", {
-						"md:grid-cols-2": randomSuggestions.length > 1,
+						"md:grid-cols-2": suggestions.length > 1,
 					})}
 				>
-					{randomSuggestions.map(
+					{suggestions.map(
 						(suggestion: PromptSuggestion, i: number) => (
-							// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-							<div key={`suggestion-${i}`} className="w-full">
+							<div
+								// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+								key={`suggestion-${i}`}
+								className="w-full select-none cursor-pointer"
+								onMouseDown={() => setPrompt(suggestion.prompt)}
+							>
 								<Card>
 									<p className="p-4 text-sm text-muted-foreground truncate">
 										{suggestion.prompt}
