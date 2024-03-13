@@ -28,11 +28,11 @@ const ImagePageContent = ({
 		<>
 			{/* preview part as a children */}
 			<div className="flex flex-col gap-4  flex-1 bg-white rounded-md px-6 py-4 overflow-hidden">
-				<div className="flex flex-col justify-between flex-1 overflow-y-scroll">
+				<div className="flex flex-col justify-between flex-1 overflow-y-scroll relative">
 					<Image
+						className="object-contain"
 						src={suggestions[0].image_url}
-						width={500}
-						height={500}
+						fill
 						alt="Picture of the author"
 					/>
 				</div>
