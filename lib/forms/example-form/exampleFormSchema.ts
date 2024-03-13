@@ -1,8 +1,8 @@
 import type { JSONSchema7 } from "json-schema";
 
 export const exampleFormSchema: JSONSchema7 = {
-	title: "table Diffusion XL",
-	description: "Stable Diffusion XL(看不见)",
+	// title: "Stable Diffusion XL",
+	// description: "Stable Diffusion XL(看不见)",
 	type: "object",
 	required: [
 		"imageSize",
@@ -47,6 +47,24 @@ export const exampleFormSchema: JSONSchema7 = {
 		// 		lon: 74,
 		// 	},
 		// },
+		digit: {
+			title: "看最大值",
+			type: "integer",
+			maximum: 5,
+			minimum: 0,
+			default: 2,
+		},
+		agreed: {
+			title: "同意用户协议",
+			type: "boolean",
+			default: true,
+		},
+		select: {
+			title: "下拉",
+			type: "string",
+			enum: ["selection1", "selection2"],
+			default: "selection1",
+		},
 		imageSize: {
 			title: "Image Size",
 			type: "string",

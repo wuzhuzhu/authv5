@@ -30,7 +30,7 @@ export const getErrorMessage = (error: unknown): string => {
 };
 
 export function tsObjectToJsonObject(obj: object) {
-	console.log(JSON.parse(JSON.stringify(obj)));
+	console.log(JSON.stringify(obj));
 	return JSON.parse(JSON.stringify(obj));
 }
 

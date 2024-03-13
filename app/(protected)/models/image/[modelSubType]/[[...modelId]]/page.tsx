@@ -1,48 +1,50 @@
+import DynamicForm from "@/app/(protected)/example/form/components/form";
 import SuggestionsSkeloton from "@/components/shared/loading/skelotons/component-loading";
 import PromptSuggestions from "@/components/shared/models/prompt-suggestions";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { PROMPT_SUGGESTION_LIMIT_IMG } from "@/lib/constants/config";
 import { getClouds } from "@/lib/data/example";
-import type { ModelSubType } from "@/lib/types";
+import { fetchFromServer } from "@/lib/fetch-from-server";
+import sdXlLightingCombinedSchema from "@/lib/forms/example-form/i2i/sd-xl-lightning";
+import type { ModelCombinedSchema, ModelSubType } from "@/lib/types";
+import type { Model } from "@/lib/types";
 import { Suspense } from "react";
+import { useRef } from "react";
 import ImagePageContent from "./components/content";
 
 const ImageModelPage = async ({
 	params,
 }: {
+	params: {
+		modelSubType: ModelSubType;
+		modelId?: string[];
+	};
 	modelSubType: ModelSubType;
 	modelId: string[];
 }) => {
-	const data = await getClouds(); // fake fetch
+	const {
+		models,
+		default_schema,
+	}: { models: Model[]; default_schema: ModelCombinedSchema } =
+		await fetchFromServer(
+			`/api/v1/playground?type=image&sub_type=${params.modelSubType}`,
+		);
 	return (
-		<ImagePageContent>
-			{/* preview part */}
-			<div>
-				<h3>
-					Preview Image Here12312312123123123
-					12312312312123123123123123123 123123 123123123aaab
-				</h3>
-				<h3>
-					Preview Image Here12312312123123123
-					12312312312123123123123123123 123123 123123123aaab
-				</h3>
-				<h3>
-					Preview Image Here12312312123123123
-					12312312312123123123123123123 123123 123123123aaab
-				</h3>
-				<p>{JSON.stringify(data?.data)}</p>
-			</div>
-
-			<Suspense
-				fallback={
-					<SuggestionsSkeloton count={PROMPT_SUGGESTION_LIMIT_IMG} />
-				}
+		<div className="flex gap-2 h-full">
+			{/* preview part as a children */}
+			<ImagePageContent
+				models={models}
+				combinedFormSchema={default_schema}
+				modelSubType={params.modelSubType}
 			>
 				<PromptSuggestions
-					modelType="image" // 当前路由锁死为image
+					modelType="image"
 					modelSubType={params.modelSubType}
 				/>
-			</Suspense>
-		</ImagePageContent>
+			</ImagePageContent>
+		</div>
 	);
 };
 

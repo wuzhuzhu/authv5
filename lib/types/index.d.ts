@@ -1,3 +1,5 @@
+import type { UiSchema } from "@rjsf/utils";
+
 // Layout Module
 export type SidebarNavItem = {
 	title: string;
@@ -54,4 +56,29 @@ export enum ModelSubType {
 export interface PromptSuggestion {
 	prompt: string;
 	image_url: string;
+}
+
+export interface Model {
+	id: string;
+	name: string;
+	description: string;
+	// coverUrl: string;
+	// inputUrl: string;
+	// codeUrl: string;
+	// status: string;
+	// sort: number;
+	type: ModelType;
+	// fast: boolean;
+	display_name: string;
+	// createdAt: {
+	// 	seconds: number;
+	// };
+	// updatedAt: {
+	// 	seconds: number;
+	// };
+}
+
+export interface ModelCombinedSchema {
+	formSchema: JSONSchema7;
+	uiSchema: UiSchema;
 }

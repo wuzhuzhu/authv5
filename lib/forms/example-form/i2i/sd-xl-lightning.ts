@@ -18,26 +18,32 @@ export const sdXlLightingFormSchema: JSONSchema7 = {
 				{
 					iconUrl: "/img/image-size-1-1.svg",
 					name: "1:1",
+					value: "512x512",
 				},
 				{
 					iconUrl: "/img/image-size-1-2.svg",
 					name: "1:2",
+					value: "512x512",
 				},
 				{
 					iconUrl: "/img/image-size-3-2.svg",
 					name: "3:2",
+					value: "512x512",
 				},
 				{
 					iconUrl: "/img/image-size-3-4.svg",
 					name: "3:4",
+					value: "512x512",
 				},
 				{
 					iconUrl: "/img/image-size-16-9.svg",
 					name: "16:9",
+					value: "512x512",
 				},
 				{
 					iconUrl: "/img/image-size-9-16.svg",
 					name: "9:16",
+					value: "512x512",
 				},
 			],
 		},
@@ -78,6 +84,10 @@ export const sdXlLightingFormSchema: JSONSchema7 = {
 			maximum: 2,
 			default: 1,
 		},
+		negativePrompt: {
+			title: "Negative Prompt",
+			type: "string",
+		},
 		image: {
 			title: "Upload Image",
 			type: "string",
@@ -89,11 +99,6 @@ export const sdXlLightingFormSchema: JSONSchema7 = {
 		// 	type: "string",
 		// 	format: "data-url",
 		// },
-		denoise: {
-			title: "Denoice",
-			type: "number",
-			default: 0.6,
-		},
 	},
 };
 
@@ -134,13 +139,16 @@ export const sdXlLightingUiSchema = {
 		"ui:description":
 			"CFG, How close you want the model to stick to your prompt when looking for a related image to show you.",
 	},
+	negativePrompt: {
+		"ui:widget": "textarea",
+		"ui:description": "Describe what you don't want included in the image.",
+	},
 	image: {
 		"ui:widget": "imageUpload",
 		"ui:options": {
 			// 这些key不稳定 有可能会改
 			accept: "image/*", // 此处待测试
 			filePreview: true,
-			personalbar: true,
 		},
 		"ui:description": "Upload reference image.",
 	},
@@ -150,23 +158,24 @@ export const sdXlLightingUiSchema = {
 	// 		// 这些key不稳定 有可能会改
 	// 		accept: "image/*", // 此处待测试
 	// 		filePreview: true,
-	// 		personalbar: true,
 	// 	},
 	// 	"ui:description": "Upload reference image.",
 	// },
-	denoise: {
-		"ui:widget": "rangeInput", // 定制的滑块组件
-		"ui:options": {
-			step: 0.1, // 步长
-			showPoint: false, // 每一步没有小圆点
-		},
-		"ui:description": "这里的释义待产品补充",
-	},
 };
 
 const sdXlLightingCombinedSchema = {
-	schema: sdXlLightingFormSchema,
+	formSchema: sdXlLightingFormSchema,
 	uiSchema: sdXlLightingUiSchema,
+};
+
+const exampleFormData = {
+	imageSize: "512x512", // 此处表单原生formdata是对象,需要前端处理,TODO
+	batchSize: 1,
+	seed: 0,
+	numInferenceSteps: 25,
+	guidanceScale: 7.5,
+	image: "data:image/jpeg;name=3BBA2C93-D6DE-4CEE-A3F7-79915403B846_1_105_c.jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QC8RXhpZgAATU0AKgAAAAgABQESAAMAAAABAAEAAAEaAAUAAAABAAAASgEbAAUAAAABAAAAU省略一大堆",
+	denoise: 0.6,
 };
 
 export default sdXlLightingCombinedSchema;
