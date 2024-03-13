@@ -1,5 +1,6 @@
 import SuggestionsSkeloton from "@/components/shared/loading/skelotons/component-loading";
 import PromptSuggestions from "@/components/shared/models/prompt-suggestions";
+import { PROMPT_SUGGESTION_LIMIT_IMG } from "@/lib/constants/config";
 import { getClouds } from "@/lib/data/example";
 import type { ModelSubType } from "@/lib/types";
 import { Suspense } from "react";
@@ -31,7 +32,11 @@ const ImageModelPage = async ({
 				<p>{JSON.stringify(data?.data)}</p>
 			</div>
 
-			<Suspense fallback={<SuggestionsSkeloton />}>
+			<Suspense
+				fallback={
+					<SuggestionsSkeloton count={PROMPT_SUGGESTION_LIMIT_IMG} />
+				}
+			>
 				<PromptSuggestions
 					modelType="image" // 当前路由锁死为image
 					modelSubType={params.modelSubType}
