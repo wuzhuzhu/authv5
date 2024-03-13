@@ -1,5 +1,6 @@
-import { RxReload } from "react-icons/rx";
+import React, { Children } from "react";
 import { Button } from "../ui/button";
+import { RxReload } from "react-icons/rx";
 
 interface LoadingButtonProps
 	extends React.ButtonHTMLAttributes<HTMLButtonElement> {

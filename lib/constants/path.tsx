@@ -4,11 +4,11 @@
  */
 
 import { BsChatDots } from "react-icons/bs";
-import { FaImage, FaImages, FaKey, FaMoneyBill } from "react-icons/fa";
-import type { SidebarNavItem } from "../types";
+import { FaImage, FaKey, FaMoneyBill } from "react-icons/fa";
+import { SidebarNavItem } from "../types";
 
 export const publicRoutes = [
-	// "/",
+	"/",
 	"/speed-test",
 	"/api/example/test",
 	"/api/example/test-edge",
@@ -36,7 +36,7 @@ export const apiAuthPrefix = "/api/auth";
 /**
  * the default login redirect path
  */
-export const DEFAULT_LOGIN_REDIRECT = "/models/chat";
+export const DEFAULT_LOGIN_REDIRECT = "/settings";
 export const LOGIN_ROUTE = "/auth/login";
 
 export type HeaderLink = {
@@ -87,17 +87,12 @@ export const SIDEBAR_MENU: SidebarNavItem[] = [
 			{
 				title: "Chat",
 				icon: <BsChatDots />,
-				href: "/models/text/chat",
+				href: "/models/chat",
 			},
 			{
-				title: "Text To Image",
+				title: "Image",
 				icon: <FaImage />,
-				href: "/models/image/text-to-image",
-			},
-			{
-				title: "Image To Image",
-				icon: <FaImages />,
-				href: "/models/image/image-to-image",
+				href: "/models/image",
 			},
 		],
 	},
