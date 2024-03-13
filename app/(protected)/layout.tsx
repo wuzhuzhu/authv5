@@ -8,10 +8,10 @@ export default function ProtectedLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<div className="w-full min-h-full bg-background flex flex-col">
+		<div className="w-full h-full over bg-background flex flex-col">
 			<Header />
-			<div className="flex gap-4 flex-1 px-2 pb-2">
-				<div className="basis-48">
+			<div className="flex flex-1 gap-2 px-2 pb-2 overflow-hidden">
+				<div className="basis-[268px]">
 					<SidebarNav items={SIDEBAR_MENU} />
 				</div>
 

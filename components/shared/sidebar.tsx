@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { SidebarNavItem } from "@/lib/types";
+import type { SidebarNavItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import DarkLightToggle from "./dark-light-toggle";
 // import { BsChatDots } from "react-icons/bs";
@@ -16,30 +16,28 @@ export function SidebarNav({ items }: SidebarNavProps) {
 	const pathname = usePathname();
 
 	return items.length ? (
-		<div className="w-full h-full">
-			<div className="w-full h-full pt-4 bg-white rounded-md flex-col justify-start items-start gap-4 inline-flex">
-				{items.map((item, index) => (
-					<div
-						key={index}
-						className={cn("pb-8 w-full flex flex-col gap-2")}
-					>
-						<h4 className="text-gray-950 text-lg font-semibold font-['Roboto'] leading-7 mx-4">
-							{item.title}
-						</h4>
-						{item.items ? (
-							<SidebarNavItems
-								items={item.items}
-								pathname={pathname}
-							/>
-						) : null}
-						{item.description && (
-							<span className="w-full text-right px-4 text-muted-foreground font-light">
-								{item.description}
-							</span>
-						)}
-					</div>
-				))}
-			</div>
+		<div className="w-full h-full py-6 px-3 bg-white rounded-md flex-col justify-start items-start gap-4 inline-flex">
+			{items.map((item, index) => (
+				<div
+					key={index}
+					className={cn("pb-8 w-full flex flex-col gap-2")}
+				>
+					<h4 className="text-gray-950 text-lg font-semibold font-['Roboto'] leading-7 mx-4">
+						{item.title}
+					</h4>
+					{item.items ? (
+						<SidebarNavItems
+							items={item.items}
+							pathname={pathname}
+						/>
+					) : null}
+					{item.description && (
+						<span className="w-full text-right text-sm px-4 text-muted-foreground font-light">
+							{item.description}
+						</span>
+					)}
+				</div>
+			))}
 		</div>
 	) : null;
 }

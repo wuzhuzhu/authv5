@@ -1,10 +1,10 @@
 import { getClouds } from "@/lib/data/example";
 
-const ImageModelPage = async () => {
+const ChatModelPage = async () => {
 	const data = await getClouds(); // fake fetch
 	return (
 		<>
-			<form action="generate">
+			<form className="flex gap-2 h-full" action="generate">
 				<div className="flex-1 bg-accent p-4">
 					<h3>Conversation Here</h3>
 					<p>{JSON.stringify(data?.data)}</p>
@@ -17,4 +17,4 @@ const ImageModelPage = async () => {
 	);
 };
 
-export default ImageModelPage;
+export default ChatModelPage;

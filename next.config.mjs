@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
+	images: {
+		domains: [process.env.OSS_IMG_BUCKET],
+	},
 	typescript: {
 		ignoreBuildErrors: true,
 	},
